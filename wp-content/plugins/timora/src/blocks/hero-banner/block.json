@@ -1,22 +1,14 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "timora/hero-banner",
-    "title": "Hero Banner Simple",
-    "icon": "cover-image",
-    "description": "Simple Main Hero Banner block in Timora Project.",
-    "category": "text",
-    "keywords": [
-        "header",
-        "wide",
-        "fancy"
-    ],
-    "version": "1",
-    "textdomain": "timora",
-    "editorScript": "file:./index.js",
-    "attributes": {
-        "content": {
-            "type": "string"
-        }
-    }
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "timora/hero-banner",
+  "title": "Timora Hero Banner",
+  "icon": "calendar-alt",
+  "description": "Hero Banner block in Timora Project.",
+  "category": "text",
+  "keywords": ["hero", "banner", "fancy"],
+  "version": "1",
+  "textdomain": "timora",
+  "editorScript": "file:./index.js",
+  "style": "file:./index.css"
 }
