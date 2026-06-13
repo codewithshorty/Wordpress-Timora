@@ -9,7 +9,7 @@
 
 endif; ?>
 
-<div class="bg-red-500 text-white p-10">
+<!-- <div class="bg-red-500 text-white p-10">
     TEST TAILWIND
-</div>
+</div> -->
 <?php get_footer() ?>

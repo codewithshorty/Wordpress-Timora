@@ -3,14 +3,18 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "wp-scripts start",
-    "build": "wp-scripts build"
-  },
+        "start": "wp-scripts start",
+        "build": "wp-scripts build",
+        "tailwind": "npx @tailwindcss/cli -i ./src/styles/tailwind.css -o ./src/styles/tailwind-output.css --watch"
+    },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@wordpress/scripts": "^32.4.0"
+    "@tailwindcss/postcss": "^4.3.0",
+    "@wordpress/scripts": "^32.4.0",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^4.3.0"
   }
 }

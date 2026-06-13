@@ -10,5 +10,47 @@
   "version": "1",
   "textdomain": "timora",
   "editorScript": "file:./index.js",
-  "style": "file:./index.css"
+  "style": "file:./index.css",
+  "attributes": {
+    "headingText": {
+      "type": "string",
+      "default": "Your smartest AI assistant"
+    },
+    "headingSpan": {
+      "type": "string",
+      "default": "work faster and smarter"
+    },
+    "headingDescription": {
+      "type": "string",
+      "default": "Smarter sales, faster decisions: Al powered dashboard with; call analytics, transcripts, summaries and more"
+    },
+    "heroVideoUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "firstButtonUrl": {
+      "type": "string",
+      "default": "#"
+    },
+    "secondButtonUrl": {
+      "type": "string",
+      "default": "#"
+    },
+    "firstButtonText": {
+      "type": "string",
+      "default": "Schedule"
+    },
+    "secondButtonText": {
+      "type": "string",
+      "default": "Services"
+    },
+    "colorTheme": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "button1TextColor": {
+      "type": "string",
+      "default": "#FFFFFF"
+    }
+  }
 }

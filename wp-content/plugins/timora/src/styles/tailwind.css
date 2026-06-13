@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+.editor-styles-wrapper .wp-block-timora-hero-banner {
+  max-width: none !important;
+  width: 100%;
+}
