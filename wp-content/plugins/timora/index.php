@@ -22,6 +22,8 @@ define("TIMORA_DIR", plugin_dir_path(__FILE__));
 
 // INCLUDES
 include(TIMORA_DIR . "includes/register-timora-blocks.php");
+include(TIMORA_DIR . "includes/register-post-types.php");
 
 // HOOKS
 add_action("init", "register_timora_blocks");
+add_action("init", "register_services_post_type");
