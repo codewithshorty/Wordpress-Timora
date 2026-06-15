@@ -15,7 +15,8 @@ add_action('init', 'timora_register_assets');
 function register_timora_blocks()
 {
     $blocks = [
-        ["name" => "hero-banner"]
+        ["name" => "hero-banner"],
+        ["name" => "services"]
     ];
 
     foreach ($blocks as $block) {

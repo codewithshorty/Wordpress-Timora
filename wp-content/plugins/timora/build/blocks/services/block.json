@@ -1,0 +1,45 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "timora/services",
+  "title": "Timora Services block",
+  "icon": "calendar-alt",
+  "description": "Services block in Timora Project.",
+  "category": "text",
+  "keywords": [
+    "services",
+    "fancy"
+  ],
+  "version": "1",
+  "textdomain": "timora",
+  "editorScript": "file:./index.js",
+  "style": "file:./index.css",
+  "attributes": {
+    "services": {
+      "type": "array",
+      "default": [
+        {
+          "name": "",
+          "desc": "",
+          "imageSrc": ""
+        }
+      ]
+    },
+    "servicesTitle": {
+      "type": "string",
+      "default": "Our agency provides these"
+    },
+    "servicesSpan": {
+      "type": "string",
+      "default": "Services"
+    },
+    "themeColor": {
+      "type": "string",
+      "default": "#FFFFFF"
+    },
+    "textColor": {
+      "type": "string",
+      "default": "#000000"
+    }
+  }
+}

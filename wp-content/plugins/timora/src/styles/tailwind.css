@@ -4,3 +4,16 @@
   max-width: none !important;
   width: 100%;
 }
+
+/* Services */
+
+.service__image {
+  width: 350px;
+  height: 350px;
+}
+
+.service:hover {
+  background-color: var(--hover-bg-color);
+  color: var(--hover-text-color);
+  transition: all 0.5s easy-in;
+}
