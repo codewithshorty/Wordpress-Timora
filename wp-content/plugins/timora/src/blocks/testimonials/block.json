@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "timora/testimonials",
+  "title": "Timora Testimonials dynamic block",
+  "icon": "calendar-alt",
+  "description": "Testimonials block in Timora Project.",
+  "category": "text",
+  "keywords": ["testimonials", "people", "score", "fancy"],
+  "version": "1",
+  "textdomain": "timora",
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./frontend.js",
+  "render": "file:./render.php",
+  "style": "file:./index.css"
+}
