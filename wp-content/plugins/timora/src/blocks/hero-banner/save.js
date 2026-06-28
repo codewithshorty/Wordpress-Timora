@@ -10,7 +10,7 @@ export default function save({ attributes }) {
 
     return (
         <section
-            id="services"
+            id="hero-banner"
             {...blockProps}
         >
             <div className="relative w-full h-full">

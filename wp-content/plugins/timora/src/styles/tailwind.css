@@ -12,13 +12,10 @@
   height: 350px;
 }
 
-.service:hover {
+.service:hover{
   background-color: var(--hover-bg-color);
   color: var(--hover-text-color);
   transition: all 0.5s easy-in;
 }
-
-/* Swipper slider  */
-
 
   </style>

@@ -79,7 +79,7 @@ export default function Edit({ attributes, setAttributes }) {
 
                     </MediaUploadCheck>
                 </div>
-                <section id="services"  >
+                <section id="hero-banner"  >
                     <div className="relative w-full h-screen">                    <video
                         className="w-full h-screen object-cover"
                         src={heroVideoUrl}

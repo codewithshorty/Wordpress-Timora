@@ -88,110 +88,117 @@ function Edit({
           })
         })
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       ...blockProps,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        className: "flex flex-col space-y-28 justify-center items-center",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("h2", {
-          className: "text-6xl text-center font-extrabold uppercase mb-8",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
-            tagName: "span",
-            value: servicesTitle,
-            onChange: newServicesTitle => setAttributes({
-              servicesTitle: newServicesTitle
-            }),
-            placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Services Title", _block_json__WEBPACK_IMPORTED_MODULE_3__.name)
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-            className: "italic font-bold",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
+        id: "services",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "flex flex-col space-y-28 justify-center items-center",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("h2", {
+            className: "text-6xl text-center font-extrabold uppercase mb-8",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
               tagName: "span",
-              value: servicesSpan,
-              onChange: newServicesSpan => setAttributes({
-                servicesSpan: newServicesSpan
+              value: servicesTitle,
+              onChange: newServicesTitle => setAttributes({
+                servicesTitle: newServicesTitle
               }),
-              placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Services Span", _block_json__WEBPACK_IMPORTED_MODULE_3__.name)
-            })
-          })]
-        })
-      }), services.map((service, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        className: "group service flex items-center border-b-2 rounded-2xl text-black bg-white transition-all duration-500 w-full h-72",
-        style: {
-          "--hover-bg-color": themeColor,
-          "--hover-text-color": textColor
-        },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          className: "flex justify-between p-8 w-[65%]",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "flex justify-start space-x-4 w-[50%]",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-              className: "text-5xl font-light",
-              children: String(index + 1).padStart(2, "0")
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
-              tagName: "h3",
-              className: "text-5xl font-bold",
-              value: service.name,
-              onChange: newServiceName => updateService(index, "name", newServiceName),
-              placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Service name", _block_json__WEBPACK_IMPORTED_MODULE_3__.name)
+              placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Services Title", _block_json__WEBPACK_IMPORTED_MODULE_3__.name)
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+              className: "italic font-bold",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
+                tagName: "span",
+                value: servicesSpan,
+                onChange: newServicesSpan => setAttributes({
+                  servicesSpan: newServicesSpan
+                }),
+                placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Services Span", _block_json__WEBPACK_IMPORTED_MODULE_3__.name)
+              })
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "flex justify-end w-[50%]",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
-              tagName: "p",
-              className: "text-lg font-semibold",
-              value: service.desc,
-              onChange: newServiceDesc => updateService(index, "desc", newServiceDesc),
-              placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Service description", _block_json__WEBPACK_IMPORTED_MODULE_3__.name)
-            })
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          className: "flex items-center justify-between p-8 w-[35%]",
+          })
+        }), services.map((service, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "group service flex items-center border-b-2 rounded-2xl text-black bg-white transition-all duration-500 w-full h-72",
+          style: {
+            "--hover-bg-color": themeColor,
+            "--hover-text-color": textColor
+          },
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "flex flex-col gap-4",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.MediaUploadCheck, {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.MediaUpload, {
-                onSelect: media => updateService(index, "imageSrc", media.url),
-                allowedTypes: ["image"],
-                render: ({
-                  open
-                }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-                  variant: "primary",
-                  onClick: open,
-                  children: service.imageSrc ? "Update Image" : "Add Image"
+            className: "flex justify-between p-8 w-[65%]",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "flex justify-start space-x-4 w-[50%]",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+                className: "text-5xl font-light",
+                children: String(index + 1).padStart(2, "0")
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
+                tagName: "h3",
+                className: "text-5xl font-bold",
+                value: service.name,
+                onChange: newServiceName => updateService(index, "name", newServiceName),
+                placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Service name", _block_json__WEBPACK_IMPORTED_MODULE_3__.name)
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "flex justify-end w-[50%]",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
+                tagName: "p",
+                className: "text-lg font-semibold",
+                value: service.desc,
+                onChange: newServiceDesc => updateService(index, "desc", newServiceDesc),
+                placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Service description", _block_json__WEBPACK_IMPORTED_MODULE_3__.name)
+              })
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "flex items-center justify-between p-8 w-[35%]",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "flex flex-col gap-4",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.MediaUploadCheck, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.MediaUpload, {
+                  onSelect: media => updateService(index, "imageSrc", media.url),
+                  allowedTypes: ["image"],
+                  render: ({
+                    open
+                  }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+                    variant: "primary",
+                    onClick: open,
+                    children: service.imageSrc ? "Update Image" : "Add Image"
+                  })
+                })
+              }), service.imageSrc && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+                src: service.imageSrc,
+                alt: service.name,
+                className: "rounded-2xl scale-50 transition-transform duration-500 group-hover:rotate-8 group-hover:scale-100"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+                isDestructive: true,
+                variant: "secondary",
+                onClick: () => deleteService(index),
+                children: "Remove Service"
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+              type: "button",
+              className: "circleButton rounded-full p-4 border-2 font-extrabold text-black transition-all duration-500 cursor-pointer",
+              style: {
+                backgroundColor: themeColor,
+                color: textColor
+              },
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("svg", {
+                xmlns: "http://www.w3.org/2000/svg",
+                fill: "none",
+                viewBox: "0 0 24 24",
+                strokeWidth: "1.5",
+                stroke: "currentColor",
+                className: "size-8",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  d: "M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"
                 })
               })
-            }), service.imageSrc && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
-              src: service.imageSrc,
-              alt: service.name,
-              className: "rounded-2xl scale-50 transition-transform duration-500 group-hover:rotate-8 group-hover:scale-100"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-              isDestructive: true,
-              variant: "secondary",
-              onClick: () => deleteService(index),
-              children: "Remove Service"
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-            type: "button",
-            className: "rounded-full p-4 border-2 bg-black text-white border-black font-extrabold",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("svg", {
-              xmlns: "http://www.w3.org/2000/svg",
-              fill: "none",
-              viewBox: "0 0 24 24",
-              strokeWidth: "1.5",
-              stroke: "currentColor",
-              className: "size-8",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
-                strokeLinecap: "round",
-                strokeLinejoin: "round",
-                d: "M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"
-              })
-            })
           })]
+        }, index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+          variant: "secondary",
+          onClick: addService,
+          children: "Add New Service"
         })]
-      }, index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-        variant: "secondary",
-        onClick: addService,
-        children: "Add New Service"
-      })]
+      })
     })]
   });
 }
@@ -278,7 +285,12 @@ function Save({
                 alt: service.name,
                 className: "rounded-2xl scale-50 transition-transform duration-500 group-hover:rotate-8 group-hover:scale-100 "
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-                className: "rounded-full p-4 border-2 bg-black text-white border-black font-extrabold",
+                type: "button",
+                className: "circleButton rounded-full p-4 border-2 font-extrabold text-black transition-all duration-500 cursor-pointer",
+                style: {
+                  backgroundColor: themeColor,
+                  color: textColor
+                },
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("svg", {
                   xmlns: "http://www.w3.org/2000/svg",
                   fill: "none",

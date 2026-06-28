@@ -70,8 +70,12 @@ export default function Save({ attributes }) {
                                     )}
 
                                     <button
-                                        className="rounded-full p-4 border-2 bg-black text-white border-black font-extrabold"
-
+                                        type="button"
+                                        className="circleButton rounded-full p-4 border-2 font-extrabold text-black transition-all duration-500 cursor-pointer"
+                                        style={{
+                                            backgroundColor: themeColor,
+                                            color: textColor,
+                                        }}
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"

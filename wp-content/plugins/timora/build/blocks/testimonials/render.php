@@ -30,7 +30,7 @@ $testimonials = get_posts([
 
                             ]) ?>
                             <div
-                                class="rounded-2xl w-[300px] h-[300px] absolute top-1.5 -right-1.5 z-10 bg-blue-700"></div>
+                                class="rounded-2xl w-[300px] h-[300px] absolute top-3 -right-3 z-10 bg-blue-700"></div>
                         </div>
                     </div>
                 </div>
