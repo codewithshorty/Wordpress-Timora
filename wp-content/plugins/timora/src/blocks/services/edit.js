@@ -52,7 +52,11 @@ export default function Edit({ attributes, setAttributes }) {
                 <section id="services">
                     <div className="flex flex-col space-y-28 justify-center items-center">
 
-                        <h2 className="text-6xl text-center font-extrabold uppercase mb-8">
+                        <h2 className="text-6xl text-center font-extrabold uppercase mb-8"
+                            style={{
+                                color: themeColor
+                            }}
+                        >
 
                             <RichText
                                 tagName="span"

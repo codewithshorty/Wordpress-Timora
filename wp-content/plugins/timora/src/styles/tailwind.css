@@ -12,10 +12,36 @@
   height: 350px;
 }
 
-.service:hover{
+.service:hover {
   background-color: var(--hover-bg-color);
   color: var(--hover-text-color);
   transition: all 0.5s easy-in;
 }
 
-  </style>
+/* Main navigation styling */
+
+.timora-navigation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  backdrop-filter: blur(15px);
+  background-color: rgba(255, 255, 255, 0.08);
+  transition: all 0.4s ease;
+}
+
+.timora-navigation.scrolled {
+  position: fixed;
+  background-color: #ffffff;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+}
+
+.timora-navigation.scrolled .timora-nav-link {
+  color: #000000;
+}
+
+.timora-navigation.scrolled .timora-side-button {
+  background: #000000;
+  color: #ffffff;
+}

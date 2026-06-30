@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "timora/main-navigation",
+  "title": "Timora main navigation",
+  "icon": "calendar-alt",
+  "description": "Main navigation block in Timora Project.",
+  "category": "text",
+  "keywords": [
+    "main",
+    "navigation"
+  ],
+  "version": "1",
+  "textdomain": "timora",
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./frontend.js",
+  "render": "file:./render.php",
+  "attributes": {
+    "logo": {
+      "type": "string",
+      "default": ""
+    },
+    "menuItems": {
+      "type": "array",
+      "default": [
+        {
+          "name": "Home",
+          "url": "#"
+        }
+      ]
+    },
+    "sideButtonText": {
+      "type": "string",
+      "default": "Let's start"
+    },
+    "sideButtonURL": {
+      "type": "string",
+      "default": "#"
+    },
+    "themeColor": {
+      "type": "string",
+      "default": "#FFFFFF"
+    },
+    "menuTextColor": {
+      "type": "string",
+      "default": "#000000"
+    }
+  }
+}

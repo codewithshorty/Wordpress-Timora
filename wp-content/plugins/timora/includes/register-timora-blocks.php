@@ -29,7 +29,8 @@ function register_timora_blocks()
     $blocks = [
         ["name" => "hero-banner"],
         ["name" => "services"],
-        ["name" => "testimonials"]
+        ["name" => "testimonials"],
+        ["name" => "main-navigation"]
     ];
 
     foreach ($blocks as $block) {

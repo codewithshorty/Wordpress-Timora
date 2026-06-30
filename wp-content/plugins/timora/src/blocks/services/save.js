@@ -13,10 +13,15 @@ export default function Save({ attributes }) {
                 <div className="container mx-auto py-10 text-black">
                     <div className="flex flex-col space-y-28 justify-center items-center">
 
-                        <h2 className="text-6xl text-center font-extrabold uppercase mb-8">
+                        <h2 className="text-6xl text-center font-extrabold uppercase mb-8"
+                            style={{
+                                color: themeColor
+                            }}
+                        >
                             <RichText.Content
                                 tagName="span"
                                 value={servicesTitle}
+
                             />
                             <br />
                             <span className="italic font-bold">

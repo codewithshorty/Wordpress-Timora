@@ -96,6 +96,9 @@ function Edit({
           className: "flex flex-col space-y-28 justify-center items-center",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("h2", {
             className: "text-6xl text-center font-extrabold uppercase mb-8",
+            style: {
+              color: themeColor
+            },
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
               tagName: "span",
               value: servicesTitle,
@@ -242,6 +245,9 @@ function Save({
           className: "flex flex-col space-y-28 justify-center items-center",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h2", {
             className: "text-6xl text-center font-extrabold uppercase mb-8",
+            style: {
+              color: themeColor
+            },
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText.Content, {
               tagName: "span",
               value: servicesTitle
