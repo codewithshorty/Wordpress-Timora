@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "timora/bookings",
+  "title": "Timora Bookings",
+  "icon": "calendar-alt",
+  "description": "Bookings block in Timora Project.",
+  "category": "text",
+  "keywords": [
+    "bookings",
+    "meetings",
+    "time"
+  ],
+  "version": "1",
+  "textdomain": "timora",
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./frontend.js",
+  "style": "file:./index.css",
+  "render": "file:./render.php"
+}
