@@ -135,6 +135,7 @@
 
             </form>
 
+            <div id="message-text" class="hidden"></div>
         </div>
 
     </div>

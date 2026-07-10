@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Submit POST Data
     const form = document.querySelector("#timora-booking-form");
     const formBox = document.querySelector("#booking");
+    const messageContainer = document.querySelector("#message-text");
 
     if (!form) {
         return;
@@ -37,9 +38,15 @@ document.addEventListener("DOMContentLoaded", () => {
             })
 
             form.reset();
+            messageContainer.className = "rounded-lg px-2 py-4 text-center font-semibold bg-green-100 text-green-700";
+
+            messageContainer.textContent = response.message;
 
             console.log(response);
         } catch (error) {
+            messageContainer.className = "rounded-lg mt-2 px-2 py-4 text-center font-semibold bg-red-100 text-red-700 block";
+            messageContainer.textContent = error.message;
+
             console.error(error);
         } finally {
             submitBtn.textContent = "Book";
