@@ -1,14 +1,15 @@
 <?php
-
+$bgColor = $attributes["formBgColor"] ?? "";
+$textColor = $attributes["formTxtColor"] ?? "";
 
 ?>
 <section id="booking" class="py-24 bg-gray-100">
     <div class="container mx-auto px-6">
 
-        <div class="max-w-3xl mx-auto bg-black rounded-3xl shadow-2xl shadow-black/60 p-10 lg:p-14">
+        <div class="max-w-3xl mx-auto rounded-3xl shadow-2xl shadow-black/60 p-10 lg:p-14" style="background-color:<?php echo $bgColor ?>">
 
             <div class="mb-10 text-center">
-                <h2 class="text-4xl font-bold text-white">
+                <h2 class="text-4xl font-bold" style="color:<?php echo $textColor ?>">
                     Book Your Appointment
                 </h2>
 
@@ -20,10 +21,10 @@
             <form id="timora-booking-form" class="space-y-8">
 
                 <!-- Name & Surname -->
-                <div class="grid md:grid-cols-2 gap-6">
+                <div class="grid md:grid-cols-2 gap-6" style="background-color:<?php echo $bgColor ?>">
 
                     <div>
-                        <label class="block text-white font-semibold mb-2">
+                        <label class="block font-semibold mb-2" style="color:<?php echo $textColor ?>">
                             Name
                         </label>
 
@@ -35,7 +36,7 @@
                     </div>
 
                     <div>
-                        <label class="block text-white font-semibold mb-2">
+                        <label class="block font-semibold mb-2" style="color:<?php echo $textColor ?>">
                             Surname
                         </label>
 
@@ -49,10 +50,10 @@
                 </div>
 
                 <!-- Phone & Email -->
-                <div class="grid md:grid-cols-2 gap-6">
+                <div class="grid md:grid-cols-2 gap-6" style="background-color:<?php echo $bgColor ?>">
 
                     <div>
-                        <label class="block text-white font-semibold mb-2">
+                        <label class="block font-semibold mb-2" style="color:<?php echo $textColor ?>">
                             Phone
                         </label>
 
@@ -64,7 +65,7 @@
                     </div>
 
                     <div>
-                        <label class="block text-white font-semibold mb-2">
+                        <label class="block font-semibold mb-2" style="color:<?php echo $textColor ?>">
                             Email
                         </label>
 
@@ -78,10 +79,24 @@
                 </div>
 
                 <!-- Calendar & Time -->
-                <div class="grid md:grid-cols-2 gap-6">
+                <div class="grid md:grid-cols-3 gap-4" style="background-color:<?php echo $bgColor ?>">
 
                     <div>
-                        <label class="block text-white font-semibold mb-2">
+                        <label class="block font-semibold mb-2" style="color:<?php echo $textColor ?>">
+                            Service
+                        </label>
+
+                        <select id="booking-service"
+                            class="w-full rounded-xl bg-white px-5 py-4 text-black outline-none border border-transparent focus:border-white transition duration-300">
+
+                            <option value="">
+                                Pick type of service
+                            </option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block font-semibold mb-2" style="color:<?php echo $textColor ?>">
                             Calendar
                         </label>
 
@@ -108,9 +123,9 @@
                 </div>
 
                 <!-- Notes -->
-                <div>
+                <div style="background-color:<?php echo $bgColor ?>">
 
-                    <label class="block text-white font-semibold mb-2">
+                    <label class="block font-semibold mb-2 " style="color:<?php echo $textColor ?>">
                         Notes
                     </label>
 
@@ -127,7 +142,7 @@
 
                     <button
                         type="submit"
-                        class="w-full rounded-xl bg-white text-black font-bold uppercase tracking-widest py-5 hover:-translate-y-1 hover:shadow-xl hover:shadow-white/30 transition-all duration-300">
+                        class="w-full rounded-xl bg-white text-black font-bold uppercase tracking-widest py-5 hover:-translate-y-1 hover:shadow-xl hover:shadow-white/30 transition-all duration-300" style="background-color:<?php echo $textColor ?>; color:<?php echo $bgColor ?>">
                         Book
                     </button>
 

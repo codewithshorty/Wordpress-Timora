@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
             date: document.querySelector("#booking-date").value,
             time: document.querySelector("#booking-time").value,
             notes: document.querySelector("#booking-notes").value,
+            service: document.querySelector("#booking-service").value
         }
 
         console.log(formData);
@@ -38,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
 
             form.reset();
-            messageContainer.className = "rounded-lg px-2 py-4 text-center font-semibold bg-green-100 text-green-700";
+            messageContainer.className = "rounded-lg mt-2 px-2 py-4 text-center font-semibold bg-green-100 text-green-700 block";
 
             messageContainer.textContent = response.message;
 
@@ -46,6 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (error) {
             messageContainer.className = "rounded-lg mt-2 px-2 py-4 text-center font-semibold bg-red-100 text-red-700 block";
             messageContainer.textContent = error.message;
+
+
 
             console.error(error);
         } finally {
@@ -59,47 +62,102 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Selecting available slots
 
+
     const dateSelected = document.querySelector("#booking-date");
     const timeSelected = document.querySelector("#booking-time");
+    const serviceSelected = document.querySelector("#booking-service");
+    console.log(serviceSelected);
 
-    async function loadAvailableSlots(date) {
+    async function loadAvailableSlots(date, service) {
 
-        if (!date) {
+        if (!date || !service) {
             return;
         }
 
         try {
+
             const response = await apiFetch({
-                path: `/timora/free-slots/?date=${date}`,
+                path: `/timora/free-slots/?date=${date}&service=${service}`,
                 method: "GET"
             });
-
-            console.log(response.slots);
 
             timeSelected.innerHTML = "";
 
             const firstOption = document.createElement("option");
-            firstOption.innerText = "Select booking time";
             firstOption.value = "";
+            firstOption.textContent = "Select booking time";
 
             timeSelected.appendChild(firstOption);
 
             response.slots.forEach(slot => {
-                const optionSlot = document.createElement("option");
 
-                optionSlot.value = slot;
-                optionSlot.textContent = slot
+                const option = document.createElement("option");
 
-                timeSelected.appendChild(optionSlot);
+                option.value = slot;
+                option.textContent = slot;
+
+                timeSelected.appendChild(option);
+
             });
+
         } catch (error) {
             console.error(error);
         }
     }
 
-    dateSelected.addEventListener("change", () => {
-        loadAvailableSlots(dateSelected.value);
-    })
+    function refreshSlots() {
 
-})
+        const date = dateSelected.value;
+        const service = serviceSelected.value;
 
+        if (!date || !service) {
+            return;
+        }
+
+        loadAvailableSlots(date, service);
+
+    }
+
+
+    async function loadServices() {
+        console.log("services loading...");
+        try {
+            const services = await apiFetch({
+                "path": "/timora/services",
+                "method": "GET"
+            });
+
+            console.log(services);
+            console.log(Array.isArray(services));
+
+
+
+            serviceSelected.innerHTML = "";
+            const firstOptionService = document.createElement("option");
+            firstOptionService.value = "";
+            firstOptionService.textContent = "Pick type of service";
+            serviceSelected.appendChild(firstOptionService);
+
+            services.forEach((service) => {
+                const option = document.createElement("option");
+                option.value = service.id;
+                option.textContent = `${service.title} | ${service.duration} MIN | ${service.price} EUROS`;
+
+                serviceSelected.appendChild(option);
+
+                console.log(service.id)
+
+            });
+
+        } catch (error) {
+            console.error(error);
+        }
+
+    }
+
+    loadServices();
+
+    dateSelected.addEventListener("change", refreshSlots);
+    serviceSelected.addEventListener("change", refreshSlots);
+
+});

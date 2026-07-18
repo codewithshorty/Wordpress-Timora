@@ -16,5 +16,15 @@
   "editorScript": "file:./index.js",
   "viewScript": "file:./frontend.js",
   "style": "file:./index.css",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "attributes": {
+    "formBgColor": {
+      "type": "string",
+      "default": "#FFFFFF"
+    },
+    "formTxtColor": {
+      "type": "string",
+      "default": "#000000"
+    }
+  }
 }

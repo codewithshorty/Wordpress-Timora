@@ -116,7 +116,8 @@ document.addEventListener("DOMContentLoaded", () => {
       email: document.querySelector("#booking-email").value,
       date: document.querySelector("#booking-date").value,
       time: document.querySelector("#booking-time").value,
-      notes: document.querySelector("#booking-notes").value
+      notes: document.querySelector("#booking-notes").value,
+      service: document.querySelector("#booking-service").value
     };
     console.log(formData);
     try {
@@ -143,34 +144,68 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const dateSelected = document.querySelector("#booking-date");
   const timeSelected = document.querySelector("#booking-time");
-  async function loadAvailableSlots(date) {
-    if (!date) {
+  const serviceSelected = document.querySelector("#booking-service");
+  console.log(serviceSelected);
+  async function loadAvailableSlots(date, service) {
+    if (!date || !service) {
       return;
     }
     try {
       const response = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default()({
-        path: `/timora/free-slots/?date=${date}`,
+        path: `/timora/free-slots/?date=${date}&service=${service}`,
         method: "GET"
       });
-      console.log(response.slots);
       timeSelected.innerHTML = "";
       const firstOption = document.createElement("option");
-      firstOption.innerText = "Select booking time";
       firstOption.value = "";
+      firstOption.textContent = "Select booking time";
       timeSelected.appendChild(firstOption);
       response.slots.forEach(slot => {
-        const optionSlot = document.createElement("option");
-        optionSlot.value = slot;
-        optionSlot.textContent = slot;
-        timeSelected.appendChild(optionSlot);
+        const option = document.createElement("option");
+        option.value = slot;
+        option.textContent = slot;
+        timeSelected.appendChild(option);
       });
     } catch (error) {
       console.error(error);
     }
   }
-  dateSelected.addEventListener("change", () => {
-    loadAvailableSlots(dateSelected.value);
-  });
+  function refreshSlots() {
+    const date = dateSelected.value;
+    const service = serviceSelected.value;
+    if (!date || !service) {
+      return;
+    }
+    loadAvailableSlots(date, service);
+  }
+  async function loadServices() {
+    console.log("services loading...");
+    try {
+      const services = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default()({
+        "path": "/timora/services",
+        "method": "GET"
+      });
+      console.log(services);
+      console.log(Array.isArray(services));
+      serviceSelected.innerHTML = "";
+      const firstOptionService = document.createElement("option");
+      firstOptionService.value = "";
+      firstOptionService.textContent = "Pick type of service";
+      serviceSelected.appendChild(firstOptionService);
+      services.forEach(service => {
+        const option = document.createElement("option");
+        option.value = service.id;
+        option.textContent = `${service.title} | ${service.duration} MIN | ${service.price} EUROS`;
+        serviceSelected.appendChild(option);
+        console.log(service.id);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  loadServices();
+  dateSelected.addEventListener("change", refreshSlots);
+  serviceSelected.addEventListener("change", refreshSlots);
 });
 })();
 

@@ -21,6 +21,7 @@ function create_timora_booking_table()
             booking_date DATE NOT NULL,
             booking_time TIME NOT NULL,
             notes TEXT,
+            service_id BIGINT (20) UNSIGNED NOT NULL,
             created_at DATETIME NOT NULL,
             PRIMARY KEY (id)
         ) $charset_collate;

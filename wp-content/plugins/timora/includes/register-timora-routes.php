@@ -18,6 +18,12 @@ function register_testimonials_route()
         "callback" => "get_free_timora_bookings_slot",
         "permission_callback" => "__return_true"
     ]);
+
+    register_rest_route("timora", "/services", [
+        "methods" => "GET",
+        "callback" => "get_timora_services",
+        "permission_callback" => "__return_true"
+    ]);
 };
 
 function get_timora_testimonials()
@@ -36,10 +42,43 @@ function get_timora_testimonials()
     }, $testimonials);
 }
 
+function get_timora_services()
+{
+    $services = get_posts([
+        "post_type" => "service",
+        "posts_per_page" => -1,
+        "post_status" => "publish",
+        "order" => "ASC"
+    ]);
+
+    $response = [];
+
+    foreach ($services as $service) {
+        $response[] = [
+            "id" => $service->ID,
+            "title" => $service->post_title,
+            "duration" => get_post_meta(
+                $service->ID,
+                "duration",
+                true
+            ),
+            "price" => get_post_meta(
+                $service->ID,
+                "price",
+                true
+            )
+
+        ];
+    }
+
+    return new WP_REST_Response($response, 200);
+}
+
 
 function post_timora_bookings(WP_REST_Request $request)
 {
     $params = $request->get_json_params();
+
 
     $name = sanitize_text_field($params["name"] ?? "");
     $surname = sanitize_text_field($params["surname"] ?? "");
@@ -48,10 +87,9 @@ function post_timora_bookings(WP_REST_Request $request)
     $date = sanitize_text_field($params["date"] ?? "");
     $time = sanitize_text_field($params["time"] ?? "");
     $notes = sanitize_textarea_field($params["notes"] ?? "");
+    $service = absint($params["service"] ?? "");
 
-    global $wpdb;
 
-    $table_name = $wpdb->prefix . "timora_bookings";
 
     if (empty($name)) {
         return new WP_REST_Response([
@@ -88,6 +126,10 @@ function post_timora_bookings(WP_REST_Request $request)
         ], 400);
     }
 
+    global $wpdb;
+
+    $table_name = $wpdb->prefix . "timora_bookings";
+
     $reserved_slot = $wpdb->get_var(
         $wpdb->prepare(
             "SELECT COUNT(*)
@@ -115,7 +157,8 @@ function post_timora_bookings(WP_REST_Request $request)
             "email" => $email,
             "booking_date" => $date,
             "booking_time" => $time,
-            "notes" => $notes
+            "notes" => $notes,
+            "service_id" => $service
         ]
     );
 
@@ -140,33 +183,54 @@ function get_free_timora_bookings_slot(WP_REST_Request $request)
     global $wpdb;
 
     $date = $request->get_param("date");
+    $service_id = $request->get_param("service");
 
 
     $table_name = $wpdb->prefix . "timora_bookings";
 
     $date = sanitize_text_field($date);
+    $service_id = absint($request->get_param("service"));
 
-    error_log($date);
-
-    if (!$date) {
+    if (!$date || !$service_id) {
         return new WP_REST_Response([
             "success" => false,
-            "message" => "Date is required"
+            "message" => "Date and service are required"
         ], 400);
     }
 
-    $booked_slots = $wpdb->get_col(
+    $duration = (int)get_post_meta(
+        $service_id,
+        "duration",
+        true
+    );
+
+    $booked_slots = $wpdb->get_results(
         $wpdb->prepare(
-            "SELECT booking_time
+            "SELECT booking_time,service_id
             FROM $table_name
             WHERE booking_date = %s",
             $date
-        )
+        ),
+        ARRAY_A
     );
 
-    $booked_slots = array_map(function ($slot) {
-        return date("H:i", strtotime($slot));
-    }, $booked_slots);
+    // Reservation array with booking time and duration
+    $reservations = [];
+
+    foreach ($booked_slots as $slot) {
+        $reservations[] = [
+            "start" => $slot["booking_time"],
+            "duration" => (int)get_post_meta(
+                $slot["service_id"],
+                "duration",
+                true
+            )
+        ];
+    }
+
+    // $booked_slots = array_map(function ($slot) {
+    //     return date("H:i", strtotime($slot));
+    // }, $booked_slots);
 
 
     $all_slots = [];
@@ -175,15 +239,40 @@ function get_free_timora_bookings_slot(WP_REST_Request $request)
 
     while ($first_slot <= $last_slot) {
         $all_slots[] = date("H:i", $first_slot);
-        $first_slot = strtotime("+30 minutes", $first_slot);
+        $first_slot = strtotime("+{$duration} minutes", $first_slot);
     }
 
+    // Testing of available slots
+    $available = [];
 
 
-    $all_available_slots = array_values(array_diff($all_slots, $booked_slots));
+
+
+    foreach ($all_slots as $slot) {
+        // Testing of free timespan initialization
+        $free = true;
+        $new_start = strtotime($slot);
+        $new_end = strtotime("+{$duration} minutes", $new_start);
+        foreach ($reservations as $reservation) {
+            $reservation_start = strtotime($reservation["start"]);
+            $reservation_duration = $reservation["duration"];
+            $reservation_end = strtotime("+{$reservation_duration} minutes", $reservation_start);
+            if (
+                $new_start < $reservation_end && $reservation_start < $new_end
+            ) {
+                $free = false;
+                break;
+            }
+        }
+        if ($free) {
+            $available[] = $slot;
+        }
+    }
+
+    // $all_available_slots = array_values(array_diff($all_slots, $booked_slots));
 
     return new WP_REST_Response([
         "success" => true,
-        "slots" => $all_available_slots,
+        "slots" => $available,
     ]);
 };

@@ -10,6 +10,7 @@
   "version": "1",
   "textdomain": "timora",
   "editorScript": "file:./index.js",
+  "render": "file:./render.php",
   "style": "file:./index.css",
   "attributes": {
     "services": {

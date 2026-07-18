@@ -218,105 +218,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Save)
 /* harmony export */ });
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
-
-
-function Save({
-  attributes
-}) {
-  const {
-    services,
-    servicesSpan,
-    servicesTitle,
-    themeColor,
-    textColor
-  } = attributes;
-  const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save();
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    ...blockProps,
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
-      id: "services",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: "container mx-auto py-10 text-black",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-          className: "flex flex-col space-y-28 justify-center items-center",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h2", {
-            className: "text-6xl text-center font-extrabold uppercase mb-8",
-            style: {
-              color: themeColor
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText.Content, {
-              tagName: "span",
-              value: servicesTitle
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-              className: "italic font-bold",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText.Content, {
-                tagName: "span",
-                value: servicesSpan
-              })
-            })]
-          }), services.map((service, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "group service flex items-center border-b-2 rounded-2xl text-black bg-white transition-all duration-500 w-full h-72",
-            style: {
-              "--hover-bg-color": themeColor,
-              "--hover-text-color": textColor
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-              className: "flex justify-between p-8 w-[65%]",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                className: "flex justify-start space-x-4 w-[50%]",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-                  className: "text-5xl font-light",
-                  children: String(index + 1).padStart(2, "0")
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText.Content, {
-                  tagName: "h3",
-                  className: "text-5xl font-bold",
-                  value: service.name
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-                className: "flex justify-end w-[50%]",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText.Content, {
-                  tagName: "p",
-                  className: "text-lg font-semibold",
-                  value: service.desc
-                })
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-              className: "flex items-center justify-between p-8 w-[35%]",
-              children: [service.imageSrc && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-                src: service.imageSrc,
-                alt: service.name,
-                className: "rounded-2xl scale-50 transition-transform duration-500 group-hover:rotate-8 group-hover:scale-100 "
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-                type: "button",
-                className: "circleButton rounded-full p-4 border-2 font-extrabold text-black transition-all duration-500 cursor-pointer",
-                style: {
-                  backgroundColor: themeColor,
-                  color: textColor
-                },
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("svg", {
-                  xmlns: "http://www.w3.org/2000/svg",
-                  fill: "none",
-                  viewBox: "0 0 24 24",
-                  strokeWidth: "1.5",
-                  stroke: "currentColor",
-                  className: "size-8 transition-transform duration-500 group-hover:rotate-2",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
-                    strokeLinecap: "round",
-                    strokeLinejoin: "round",
-                    d: "M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"
-                  })
-                })
-              })]
-            })]
-          }, index))]
-        })
-      })
-    })
-  });
+function Save() {
+  return null;
 }
 
 /***/ },
@@ -377,7 +280,7 @@ module.exports = window["wp"]["i18n"];
   \****************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"timora/services","title":"Timora Services block","icon":"calendar-alt","description":"Services block in Timora Project.","category":"text","keywords":["services","fancy"],"version":"1","textdomain":"timora","editorScript":"file:./index.js","style":"file:./index.css","attributes":{"services":{"type":"array","default":[{"name":"","desc":"","imageSrc":""}]},"servicesTitle":{"type":"string","default":"Our agency provides these"},"servicesSpan":{"type":"string","default":"Services"},"themeColor":{"type":"string","default":"#FFFFFF"},"textColor":{"type":"string","default":"#000000"}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"timora/services","title":"Timora Services block","icon":"calendar-alt","description":"Services block in Timora Project.","category":"text","keywords":["services","fancy"],"version":"1","textdomain":"timora","editorScript":"file:./index.js","render":"file:./render.php","style":"file:./index.css","attributes":{"services":{"type":"array","default":[{"name":"","desc":"","imageSrc":""}]},"servicesTitle":{"type":"string","default":"Our agency provides these"},"servicesSpan":{"type":"string","default":"Services"},"themeColor":{"type":"string","default":"#FFFFFF"},"textColor":{"type":"string","default":"#000000"}}}');
 
 /***/ }
 
