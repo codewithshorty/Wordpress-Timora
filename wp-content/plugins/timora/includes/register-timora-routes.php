@@ -228,11 +228,6 @@ function get_free_timora_bookings_slot(WP_REST_Request $request)
         ];
     }
 
-    // $booked_slots = array_map(function ($slot) {
-    //     return date("H:i", strtotime($slot));
-    // }, $booked_slots);
-
-
     $all_slots = [];
     $first_slot = strtotime("09:00");
     $last_slot = strtotime("17:00");
@@ -244,8 +239,6 @@ function get_free_timora_bookings_slot(WP_REST_Request $request)
 
     // Testing of available slots
     $available = [];
-
-
 
 
     foreach ($all_slots as $slot) {
@@ -269,7 +262,6 @@ function get_free_timora_bookings_slot(WP_REST_Request $request)
         }
     }
 
-    // $all_available_slots = array_values(array_diff($all_slots, $booked_slots));
 
     return new WP_REST_Response([
         "success" => true,

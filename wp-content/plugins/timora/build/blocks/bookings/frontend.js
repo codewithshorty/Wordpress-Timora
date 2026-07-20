@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
         data: formData
       });
       form.reset();
-      messageContainer.className = "rounded-lg px-2 py-4 text-center font-semibold bg-green-100 text-green-700";
+      messageContainer.className = "rounded-lg mt-2 px-2 py-4 text-center font-semibold bg-green-100 text-green-700 block";
       messageContainer.textContent = response.message;
       console.log(response);
     } catch (error) {

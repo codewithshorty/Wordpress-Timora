@@ -5,17 +5,21 @@ $testimonials = get_posts([
     "posts_per_page" => -1,
     "post_status" => "publish"
 ]);
+
+$theme_color = $attributes["themeColor"] ?? "";
 ?>
 
-<h2 class="text-center text-blue-700 text-6xl font-bold">Testimonials</h2>
+<h2 class="text-center text-6xl font-bold"
+    style="color:<?php echo $theme_color ?>; ">Testimonials</h2>
 
-<div class="swiper mySwiper">
+<div class=" swiper mySwiper">
     <div class="swiper-wrapper">
         <?php foreach ($testimonials as $testimonial) : ?>
             <div class="swiper-slide ">
                 <div class="container mx-auto py-10 text-black w-[60%] ">
                     <div
-                        class="flex justify-between w-full p-8 rounded-2xl text-blue-700 bg-white border-b-2 shadow-lg shadow-blue-700">
+                        class="flex justify-between w-full p-8 rounded-2xl bg-white border-b-2 shadow-lg "
+                        style="color:<?php echo $theme_color ?>; box-shadow: <?php echo $theme_color ?>;">
                         <div class="w-[50%] flex flex-col justify-end space-y-8">
                             <p class="font-extrabold text-3xl">
                                 <?php echo wp_kses_post(wp_strip_all_tags($testimonial->post_content)) ?>
@@ -30,7 +34,8 @@ $testimonials = get_posts([
 
                             ]) ?>
                             <div
-                                class="rounded-2xl w-[300px] h-[300px] absolute top-3 -right-3 z-10 bg-blue-700"></div>
+                                class="rounded-2xl w-[300px] h-[300px] absolute top-3 -right-3 z-10"
+                                style="background-color:<?php echo $theme_color ?>;"></div>
                         </div>
                     </div>
                 </div>

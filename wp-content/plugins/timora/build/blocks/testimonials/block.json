@@ -17,5 +17,11 @@
   "editorScript": "file:./index.js",
   "viewScript": "file:./frontend.js",
   "render": "file:./render.php",
-  "style": "file:./index.css"
+  "style": "file:./index.css",
+  "attributes": {
+    "themeColor": {
+      "type": "string",
+      "default": "#000000"
+    }
+  }
 }
