@@ -31,7 +31,8 @@ function register_timora_blocks()
         ["name" => "services"],
         ["name" => "testimonials"],
         ["name" => "main-navigation"],
-        ["name" => "bookings"]
+        ["name" => "bookings"],
+        ["name" => "about-us"]
     ];
 
     foreach ($blocks as $block) {

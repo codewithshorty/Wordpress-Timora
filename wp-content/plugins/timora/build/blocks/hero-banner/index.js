@@ -45,7 +45,10 @@ function Edit({
     firstButtonText,
     secondButtonText,
     colorTheme,
-    button1TextColor
+    textColor,
+    heroColor1,
+    heroColor2,
+    heroColor3
   } = attributes;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InspectorControls, {
@@ -53,6 +56,22 @@ function Edit({
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Panel, {
         header: "Hero Banner Settings",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+          title: "Text Color",
+          initialOpen: true,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorPalette, {
+            colors: [{
+              name: 'white',
+              color: '#fff'
+            }, {
+              name: 'black',
+              color: '#000'
+            }],
+            value: textColor,
+            onChange: newValue => setAttributes({
+              textColor: newValue
+            })
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
           title: "Primary Button Text",
           initialOpen: true,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelRow, {
@@ -112,19 +131,30 @@ function Edit({
             defaultValue: "#000"
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
-          title: "Button Text Color",
+          title: "Hero Gradient Color 1",
           initialOpen: true,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorPalette, {
-            colors: [{
-              name: 'white',
-              color: '#fff'
-            }, {
-              name: 'black',
-              color: '#000'
-            }],
-            value: button1TextColor,
-            onChange: newButton1TextColor => setAttributes({
-              button1TextColor: newButton1TextColor
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorPicker, {
+            color: heroColor1,
+            onChange: newValue => setAttributes({
+              heroColor1: newValue
+            })
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+          title: "Hero Gradient Color 2",
+          initialOpen: true,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorPicker, {
+            color: heroColor2,
+            onChange: newValue => setAttributes({
+              heroColor2: newValue
+            })
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+          title: "Hero Gradient Color 3",
+          initialOpen: true,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorPicker, {
+            color: heroColor3,
+            onChange: newValue => setAttributes({
+              heroColor3: newValue
             })
           })
         })]
@@ -148,108 +178,96 @@ function Edit({
             allowedTypes: ["video", "image"]
           })
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("section", {
-        id: "hero-banner",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-          className: "relative w-full h-screen",
-          children: ["                    ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("video", {
-            className: "w-full h-screen object-cover",
-            src: heroVideoUrl,
-            poster: "https://placehold.co/1920x1080",
-            loop: true,
-            autoPlay: true,
-            muted: true,
-            playsInline: true
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("section", {
+        id: "hero",
+        className: "hero-gradient relative overflow-hidden h-screen",
+        style: {
+          "--hero-gradient-color1": heroColor1,
+          "--hero-gradient-color2": heroColor2,
+          "--hero-gradient-color3": heroColor3,
+          "color": textColor
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          className: "absolute inset-0 opacity-20 pointer-events-none",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+            className: "absolute -top-24 -right-24 w-[36rem] h-[36rem] rounded-full bg-[#97dffc] blur-3xl"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-            className: "absolute custom-overlay w-full h-full bg-black/50 top-0 left-0 z-10"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-            className: "absolute w-full h-full top-0 left-0 z-20 text-black",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-              className: "container h-full mx-auto flex flex-col justify-center space-y-20 items-start",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
+            className: "absolute bottom-[-6rem] left-[-6rem] w-[28rem] h-[28rem] rounded-full bg-[#858ae3] blur-3xl opacity-70"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          className: "relative max-w-7xl mx-auto",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            className: "grid lg:grid-cols-2 items-center justify-center gap-12",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                className: "inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 ring-1 mb-6",
+                style: {
+                  "boxShadow": `0 0 0 1px ${textColor}`
+                },
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
+                  className: "bi bi-stars text-[#97dffc]"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                  className: "text-sm",
+                  children: "Beauty \u2022 Healthcare \u2022 Education \u2022 Consulting"
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
                 tagName: "h1",
-                className: "text-white text-7xl",
+                className: "font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight",
                 placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Heading text", _block_json__WEBPACK_IMPORTED_MODULE_3__.textdomain),
                 value: headingText,
                 onChange: newHeadingText => setAttributes({
                   headingText: newHeadingText
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-                className: "text-gray-100 font-bold",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
-                  tagName: "span",
-                  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Span heading text", _block_json__WEBPACK_IMPORTED_MODULE_3__.textdomain),
-                  value: headingSpan,
-                  onChange: newHeadingSpan => setAttributes({
-                    headingSpan: newHeadingSpan
-                  })
-                })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
                 tagName: "p",
-                className: "w-1/2 text-2xl text-white",
+                className: "mt-5 text-lg/7 max-w-xl",
                 placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Heading description", _block_json__WEBPACK_IMPORTED_MODULE_3__.textdomain),
                 value: headingDescription,
                 onChange: newHeadingDescription => setAttributes({
                   headingDescription: newHeadingDescription
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                className: "flex space-x-3",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-                  className: "hero-button-1 group px-20 py-5 rounded-2xl text-xl uppercase font-bold duration-100 hover:translate-y-2 hover:drop-shadow-lg hover:drop-shadow-black",
+                className: "mt-8 flex flex-col sm:flex-row gap-3",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
+                  className: "inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 font-medium duration-700 transition-all hover:scale-110",
+                  style: {
+                    "cursor": "pointer",
+                    "backgroundColor": heroColor1,
+                    "color": heroColor2,
+                    "boxShadow": `0 0 0 1px ${textColor}`
+                  },
                   href: firstButtonUrl,
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
+                    className: "bi bi-calendar-plus"
+                  }), firstButtonText]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
+                  className: "inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 duration-500 transition-all hover:scale-110",
                   style: {
-                    backgroundColor: colorTheme,
-                    color: button1TextColor
+                    "cursor": "pointer",
+                    "backgroundColor": heroColor3,
+                    "color": heroColor2,
+                    "boxShadow": `0 0 0 1px ${textColor}`
                   },
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                    className: "flex items-center space-x-4",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
-                      className: "inline-block",
-                      children: firstButtonText
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("svg", {
-                      xmlns: "http://www.w3.org/2000/svg",
-                      fill: "none",
-                      viewBox: "0 0 24 24",
-                      strokeWidth: "1.5",
-                      stroke: "currentColor",
-                      className: "size-6 group-hover:animate-ping",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
-                        strokeLinecap: "round",
-                        strokeLinejoin: "round",
-                        d: "M6.75 2.994v2.25m10.5-2.25v2.25m-14.252 13.5V7.491a2.25 2.25 0 0 1 2.25-2.25h13.5a2.25 2.25 0 0 1 2.25 2.25v11.251m-18 0a2.25 2.25 0 0 0 2.25 2.25h13.5a2.25 2.25 0 0 0 2.25-2.25m-18 0v-7.5a2.25 2.25 0 0 1 2.25-2.25h13.5a2.25 2.25 0 0 1 2.25 2.25v7.5m-6.75-6h2.25m-9 2.25h4.5m.002-2.25h.005v.006H12v-.006Zm-.001 4.5h.006v.006h-.006v-.005Zm-2.25.001h.005v.006H9.75v-.006Zm-2.25 0h.005v.005h-.006v-.005Zm6.75-2.247h.005v.005h-.005v-.005Zm0 2.247h.006v.006h-.006v-.006Zm2.25-2.248h.006V15H16.5v-.005Z"
-                      })
-                    })]
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-                  className: "group px-20 py-5 border-2 border-black bg-black/50 text-white rounded-2xl text-xl font-bold uppercase hover:text-white hover:border-transparent duration-300 transform-all hover:bg-black hover:translate-y-2 hover:drop-shadow-xl hover:drop-shadow-black",
                   href: secondButtonUrl,
-                  style: {
-                    backgroundColor: `${colorTheme}80`,
-                    color: button1TextColor
-                  },
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                    className: "flex items-center justify-between space-x-4",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
-                      children: secondButtonText
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("svg", {
-                      xmlns: "http://www.w3.org/2000/svg",
-                      fill: "none",
-                      viewBox: "0 0 24 24",
-                      strokeWidth: "1.5",
-                      stroke: "currentColor",
-                      className: "size-6 group-hover:animate-ping",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
-                        strokeLinecap: "round",
-                        strokeLinejoin: "round",
-                        d: "m9 12.75 3 3m0 0 3-3m-3 3v-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                      })
-                    })]
-                  })
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
+                    className: "bi bi-briefcase"
+                  }), secondButtonText]
                 })]
               })]
-            })
-          })]
-        })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+              className: "relative w-full h-screen flex justify-center items-center",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("video", {
+                className: "w-full h-auto object-cover rounded-2xl",
+                src: heroVideoUrl,
+                poster: "https://placehold.co/1920x1080",
+                loop: true,
+                autoPlay: true,
+                muted: true,
+                playsInline: true
+              })
+            })]
+          })
+        })]
       })]
     })]
   });
@@ -276,109 +294,101 @@ __webpack_require__.r(__webpack_exports__);
 function save({
   attributes
 }) {
+  const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save({
+    className: "w-full"
+  });
   const {
     headingText,
-    headingSpan,
     headingDescription,
     heroVideoUrl,
     firstButtonUrl,
     secondButtonUrl,
     firstButtonText,
     secondButtonText,
-    colorTheme,
-    button1TextColor
+    textColor,
+    heroColor1,
+    heroColor2,
+    heroColor3
   } = attributes;
-  const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save();
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
-    id: "hero-banner",
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     ...blockProps,
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      className: "relative w-full h-full",
-      children: [heroVideoUrl && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("video", {
-        src: heroVideoUrl,
-        poster: "https://placehold.co/1920x1080",
-        loop: true,
-        autoPlay: true,
-        muted: true,
-        playsInline: true
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+      id: "hero",
+      className: "hero-gradient relative overflow-hidden h-screen",
+      style: {
+        "--hero-gradient-color1": heroColor1,
+        "--hero-gradient-color2": heroColor2,
+        "--hero-gradient-color3": heroColor3,
+        color: textColor
+      },
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "absolute inset-0 opacity-20 pointer-events-none",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "absolute -top-24 -right-24 w-[36rem] h-[36rem] rounded-full bg-[#97dffc] blur-3xl"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "absolute bottom-[-6rem] left-[-6rem] w-[28rem] h-[28rem] rounded-full bg-[#858ae3] blur-3xl opacity-70"
+        })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: "absolute custom-overlay w-full h-full bg-black/50 top-0 left-0 z-10"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: "absolute w-full h-full top-0 left-0 z-20 text-black",
+        className: "relative max-w-7xl mx-auto",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-          className: "container h-full mx-auto flex flex-col justify-center space-y-20 items-start",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h1", {
-            className: "text-white text-7xl",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText.Content, {
-              tagName: "span",
+          className: "grid lg:grid-cols-2 items-center justify-center  gap-12",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 ring-1 mb-6",
+              style: {
+                boxShadow: `0 0 0 1px ${textColor}`
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+                className: "bi bi-stars text-[#97dffc]"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                className: "text-sm",
+                children: "Beauty \u2022 Healthcare \u2022 Education \u2022 Consulting"
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText.Content, {
+              tagName: "h1",
+              className: "font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight",
               value: headingText
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-              className: "text-gray-100 font-bold",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText.Content, {
-                tagName: "span",
-                value: headingSpan
-              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText.Content, {
+              tagName: "p",
+              className: "mt-5 text-lg/7 max-w-xl",
+              value: headingDescription
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "mt-8 flex flex-col sm:flex-row gap-3",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
+                href: firstButtonUrl,
+                className: "inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 font-medium duration-700 transition-all hover:scale-110",
+                style: {
+                  backgroundColor: heroColor1,
+                  color: heroColor2,
+                  boxShadow: `0 0 0 1px ${textColor}`
+                },
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+                  className: "bi bi-calendar-plus"
+                }), firstButtonText]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
+                href: secondButtonUrl,
+                className: "inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 duration-500 transition-all hover:scale-110",
+                style: {
+                  backgroundColor: heroColor3,
+                  color: heroColor2,
+                  boxShadow: `0 0 0 1px ${textColor}`
+                },
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+                  className: "bi bi-briefcase"
+                }), secondButtonText]
+              })]
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-            className: "w-1/2 text-2xl text-white",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText.Content, {
-              tagName: "p",
-              value: headingDescription
+            className: "relative w-full h-screen flex justify-center items-center",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("video", {
+              className: "w-full h-auto object-cover rounded-2xl",
+              src: heroVideoUrl,
+              poster: "https://placehold.co/1920x1080",
+              loop: true,
+              autoPlay: true,
+              muted: true,
+              playsInline: true
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "flex space-x-3",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-              className: "group px-20 py-5 rounded-2xl text-xl uppercase font-bold hover:bg-black hover:text-white duration-100 hover:translate-y-2 hover:drop-shadow-lg hover:drop-shadow-black",
-              href: firstButtonUrl,
-              style: {
-                backgroundColor: colorTheme,
-                color: button1TextColor
-              },
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                className: "flex items-center space-x-4",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-                  className: "inline-block",
-                  children: firstButtonText
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("svg", {
-                  xmlns: "http://www.w3.org/2000/svg",
-                  fill: "none",
-                  viewBox: "0 0 24 24",
-                  strokeWidth: "1.5",
-                  stroke: "currentColor",
-                  className: "size-6 group-hover:animate-ping",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
-                    strokeLinecap: "round",
-                    strokeLinejoin: "round",
-                    d: "M6.75 2.994v2.25m10.5-2.25v2.25m-14.252 13.5V7.491a2.25 2.25 0 0 1 2.25-2.25h13.5a2.25 2.25 0 0 1 2.25 2.25v11.251m-18 0a2.25 2.25 0 0 0 2.25 2.25h13.5a2.25 2.25 0 0 0 2.25-2.25m-18 0v-7.5a2.25 2.25 0 0 1 2.25-2.25h13.5a2.25 2.25 0 0 1 2.25 2.25v7.5m-6.75-6h2.25m-9 2.25h4.5"
-                  })
-                })]
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-              className: "group px-20 py-5 border-2 border-black text-white rounded-2xl text-xl font-bold uppercase hover:text-white hover:border-transparent duration-300 transform-all hover:bg-black hover:translate-y-2 hover:drop-shadow-xl hover:drop-shadow-black",
-              href: secondButtonUrl,
-              style: {
-                backgroundColor: `${colorTheme}80`,
-                color: button1TextColor
-              },
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                className: "flex items-center justify-between space-x-4",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-                  children: secondButtonText
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("svg", {
-                  xmlns: "http://www.w3.org/2000/svg",
-                  fill: "none",
-                  viewBox: "0 0 24 24",
-                  strokeWidth: "1.5",
-                  stroke: "currentColor",
-                  className: "size-6 group-hover:animate-ping",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
-                    strokeLinecap: "round",
-                    strokeLinejoin: "round",
-                    d: "m9 12.75 3 3m0 0 3-3m-3 3v-7.5M21 12a9 9 0 1 1-18 0"
-                  })
-                })]
-              })
-            })]
           })]
         })
       })]
@@ -456,7 +466,7 @@ module.exports = window["wp"]["i18n"];
   \*******************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"timora/hero-banner","title":"Timora Hero Banner","icon":"calendar-alt","description":"Hero Banner block in Timora Project.","category":"text","keywords":["hero","banner","fancy"],"version":"1","textdomain":"timora","editorScript":"file:./index.js","style":"file:./index.css","attributes":{"headingText":{"type":"string","default":"Your smartest AI assistant"},"headingSpan":{"type":"string","default":"work faster and smarter"},"headingDescription":{"type":"string","default":"Smarter sales, faster decisions: Al powered dashboard with; call analytics, transcripts, summaries and more"},"heroVideoUrl":{"type":"string","default":""},"firstButtonUrl":{"type":"string","default":"#"},"secondButtonUrl":{"type":"string","default":"#"},"firstButtonText":{"type":"string","default":"Schedule"},"secondButtonText":{"type":"string","default":"Services"},"colorTheme":{"type":"string","default":"#000000"},"button1TextColor":{"type":"string","default":"#FFFFFF"}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"timora/hero-banner","title":"Timora Hero Banner","icon":"calendar-alt","description":"Hero Banner block in Timora Project.","category":"text","keywords":["hero","banner","fancy"],"version":"1","textdomain":"timora","editorScript":"file:./index.js","style":"file:./index.css","attributes":{"headingText":{"type":"string","default":"Your smartest AI assistant"},"headingSpan":{"type":"string","default":"work faster and smarter"},"headingDescription":{"type":"string","default":"Accept bookings 24/7, manage services and availability, and send automatic confirmations and reminders. Built for solo providers and growing teams."},"heroVideoUrl":{"type":"string","default":""},"heroColor1":{"type":"string","default":" #613dc1"},"heroColor2":{"type":"string","default":"#4e148c"},"heroColor3":{"type":"string","default":"#2c0735"},"firstButtonUrl":{"type":"string","default":"#"},"secondButtonUrl":{"type":"string","default":"#"},"firstButtonText":{"type":"string","default":"Schedule"},"secondButtonText":{"type":"string","default":"Services"},"colorTheme":{"type":"string","default":"#000000"},"textColor":{"type":"string","default":"#FFFFFF"}}}');
 
 /***/ }
 

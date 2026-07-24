@@ -1,0 +1,45 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "timora/about-us",
+  "title": "Timora About Us",
+  "icon": "calendar-alt",
+  "description": "About Us block in Timora Project.",
+  "category": "text",
+  "keywords": [
+    "about-us",
+    "description",
+    "intro"
+  ],
+  "version": "1",
+  "textdomain": "timora",
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./frontend.js",
+  "style": "file:./index.css",
+  "attributes": {
+    "introTitle": {
+      "type": "string",
+      "default": "Built for providers. Loved by clients."
+    },
+    "introDescription": {
+      "type": "string",
+      "default": "Twilight Booking is a universal scheduling platform for beauty studios, medical practices, tutors, coaches, consultants, and more. Manage services, availability, and client communication from one elegant dashboard with clear permissions for teams. Secure by design, mobile‑friendly, and ready for WordPress as Gutenberg blocks."
+    },
+    "introImageURL": {
+      "type": "string",
+      "default": "https://placehold.co/600x400"
+    },
+    "introFeature1": {
+      "type": "string",
+      "default": "Privacy-first design with secure data handling and audit logs."
+    },
+    "introFeature2": {
+      "type": "string",
+      "default": "Fast on mobile, delightful on desktop — responsive by nature."
+    },
+    "introFeature3": {
+      "type": "string",
+      "default": "Native WordPress support with modular Gutenberg blocks."
+    }
+  }
+}

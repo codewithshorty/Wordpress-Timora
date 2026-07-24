@@ -9,12 +9,24 @@ export default function Edit({ attributes, setAttributes }) {
         className: "w-full"
     });
 
-    const { headingText, headingSpan, headingDescription, heroVideoUrl, firstButtonUrl, secondButtonUrl, firstButtonText, secondButtonText, colorTheme, button1TextColor } = attributes;
+    const { headingText, headingSpan, headingDescription, heroVideoUrl, firstButtonUrl, secondButtonUrl, firstButtonText, secondButtonText, colorTheme, textColor, heroColor1, heroColor2, heroColor3 } = attributes;
 
     return (
         <>
             <InspectorControls placeholder={__("Settings", metadata.textdomain)}>
+
                 <Panel header="Hero Banner Settings">
+                    <PanelBody title="Text Color" initialOpen={true}>
+                        <ColorPalette
+                            colors={
+                                [
+                                    { name: 'white', color: '#fff' },
+                                    { name: 'black', color: '#000' },
+                                ]}
+                            value={textColor}
+                            onChange={(newValue) => setAttributes({ textColor: newValue })}
+                        />
+                    </PanelBody>
                     <PanelBody title="Primary Button Text" initialOpen={true}>
                         <PanelRow>
                             <TextControl
@@ -54,15 +66,22 @@ export default function Edit({ attributes, setAttributes }) {
                         />
                     </PanelBody>
 
-                    <PanelBody title="Button Text Color" initialOpen={true}>
-                        <ColorPalette
-                            colors={
-                                [
-                                    { name: 'white', color: '#fff' },
-                                    { name: 'black', color: '#000' },
-                                ]}
-                            value={button1TextColor}
-                            onChange={(newButton1TextColor) => setAttributes({ button1TextColor: newButton1TextColor })}
+                    <PanelBody title="Hero Gradient Color 1" initialOpen={true}>
+                        <ColorPicker
+                            color={heroColor1}
+                            onChange={(newValue) => setAttributes({ heroColor1: newValue })}
+                        />
+                    </PanelBody>
+                    <PanelBody title="Hero Gradient Color 2" initialOpen={true}>
+                        <ColorPicker
+                            color={heroColor2}
+                            onChange={(newValue) => setAttributes({ heroColor2: newValue })}
+                        />
+                    </PanelBody>
+                    <PanelBody title="Hero Gradient Color 3" initialOpen={true}>
+                        <ColorPicker
+                            color={heroColor3}
+                            onChange={(newValue) => setAttributes({ heroColor3: newValue })}
                         />
                     </PanelBody>
 
@@ -79,106 +98,84 @@ export default function Edit({ attributes, setAttributes }) {
 
                     </MediaUploadCheck>
                 </div>
-                <section id="hero-banner"  >
-                    <div className="relative w-full h-screen">                    <video
-                        className="w-full h-screen object-cover"
-                        src={heroVideoUrl}
-                        poster="https://placehold.co/1920x1080"
-                        loop
-                        autoPlay
-                        muted
-                        playsInline
-                    />
-                        <div
-                            className="absolute custom-overlay w-full h-full bg-black/50 top-0 left-0 z-10"
-                        ></div>
-                        <div className="absolute w-full h-full top-0 left-0 z-20 text-black">
-                            <div
-                                className="container h-full mx-auto flex flex-col justify-center space-y-20 items-start"
-                            >
+                {/* Hero Banner  */}
+                <section id="hero" className="hero-gradient relative overflow-hidden h-screen"
+                    style={{
+                        "--hero-gradient-color1": heroColor1,
+                        "--hero-gradient-color2": heroColor2,
+                        "--hero-gradient-color3": heroColor3,
+                        "color": textColor
+                    }}
+                >
+                    <div className="absolute inset-0 opacity-20 pointer-events-none">
+                        <div className="absolute -top-24 -right-24 w-[36rem] h-[36rem] rounded-full bg-[#97dffc] blur-3xl"></div>
+                        <div className="absolute bottom-[-6rem] left-[-6rem] w-[28rem] h-[28rem] rounded-full bg-[#858ae3] blur-3xl opacity-70"></div>
+                    </div>
+                    <div className="relative max-w-7xl mx-auto">
+                        <div className="grid lg:grid-cols-2 items-center justify-center gap-12">
+                            <div>
+                                <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 ring-1 mb-6" style={{
+                                    "boxShadow": `0 0 0 1px ${textColor}`
+                                }}>
+                                    <i className="bi bi-stars text-[#97dffc]"></i>
+                                    <span className="text-sm">Beauty • Healthcare • Education • Consulting</span>
+                                </div>
+
                                 <RichText
                                     tagName="h1"
-                                    className="text-white text-7xl"
+                                    className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight"
                                     placeholder={__("Heading text", metadata.textdomain)}
                                     value={headingText}
                                     onChange={(newHeadingText) => setAttributes({ headingText: newHeadingText })} />
-                                <br />
-                                <span className="text-gray-100 font-bold"
-                                >
-                                    <RichText
-                                        tagName="span"
-                                        placeholder={__("Span heading text", metadata.textdomain)}
-                                        value={headingSpan}
-                                        onChange={(newHeadingSpan) => setAttributes({ headingSpan: newHeadingSpan })} />
-                                </span
-                                >
+
                                 <RichText
                                     tagName="p"
-                                    className="w-1/2 text-2xl text-white"
+                                    className="mt-5 text-lg/7 max-w-xl"
                                     placeholder={__("Heading description", metadata.textdomain)}
                                     value={headingDescription}
                                     onChange={(newHeadingDescription) => setAttributes({ headingDescription: newHeadingDescription })} />
-                                <div className="flex space-x-3">
-                                    <a
-                                        className="hero-button-1 group px-20 py-5 rounded-2xl text-xl uppercase font-bold duration-100 hover:translate-y-2 hover:drop-shadow-lg hover:drop-shadow-black"
-                                        href={firstButtonUrl}
+
+                                <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                                    <a className="inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 font-medium duration-700 transition-all hover:scale-110"
                                         style={{
-                                            backgroundColor: colorTheme,
-                                            color: button1TextColor
-
+                                            "cursor": "pointer",
+                                            "backgroundColor": heroColor1,
+                                            "color": heroColor2,
+                                            "boxShadow": `0 0 0 1px ${textColor}`
                                         }}
-                                    >
-                                        <div className="flex items-center space-x-4">
-                                            <p className="inline-block">{firstButtonText}</p>
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                strokeWidth="1.5"
-                                                stroke="currentColor"
-                                                className="size-6 group-hover:animate-ping"
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    d="M6.75 2.994v2.25m10.5-2.25v2.25m-14.252 13.5V7.491a2.25 2.25 0 0 1 2.25-2.25h13.5a2.25 2.25 0 0 1 2.25 2.25v11.251m-18 0a2.25 2.25 0 0 0 2.25 2.25h13.5a2.25 2.25 0 0 0 2.25-2.25m-18 0v-7.5a2.25 2.25 0 0 1 2.25-2.25h13.5a2.25 2.25 0 0 1 2.25 2.25v7.5m-6.75-6h2.25m-9 2.25h4.5m.002-2.25h.005v.006H12v-.006Zm-.001 4.5h.006v.006h-.006v-.005Zm-2.25.001h.005v.006H9.75v-.006Zm-2.25 0h.005v.005h-.006v-.005Zm6.75-2.247h.005v.005h-.005v-.005Zm0 2.247h.006v.006h-.006v-.006Zm2.25-2.248h.006V15H16.5v-.005Z"
-                                                />
-                                            </svg>
-                                        </div>
+                                        href={firstButtonUrl}>
+                                        <i className="bi bi-calendar-plus"></i>
+                                        {firstButtonText}
                                     </a>
-                                    <a
-                                        className="group px-20 py-5 border-2 border-black bg-black/50 text-white rounded-2xl text-xl font-bold uppercase hover:text-white hover:border-transparent duration-300 transform-all hover:bg-black hover:translate-y-2 hover:drop-shadow-xl hover:drop-shadow-black"
-                                        href={secondButtonUrl}
-                                        style={
-                                            {
-                                                backgroundColor: `${colorTheme}80`,
-                                                color: button1TextColor
-                                            }
-                                        }
-
-                                    >
-                                        <div className="flex items-center justify-between space-x-4">
-                                            <p>{secondButtonText}</p>
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                strokeWidth="1.5"
-                                                stroke="currentColor"
-                                                className="size-6 group-hover:animate-ping"
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    d="m9 12.75 3 3m0 0 3-3m-3 3v-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                                                />
-                                            </svg>
-                                        </div>
+                                    <a className="inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 duration-500 transition-all hover:scale-110" style={{
+                                        "cursor": "pointer",
+                                        "backgroundColor": heroColor3,
+                                        "color": heroColor2,
+                                        "boxShadow": `0 0 0 1px ${textColor}`
+                                    }}
+                                        href={secondButtonUrl}>
+                                        <i className="bi bi-briefcase"></i>
+                                        {secondButtonText}
                                     </a>
                                 </div>
                             </div>
+                            {/* Hero collage  */}
+                            <div className="relative w-full h-screen flex justify-center items-center">
+                                <video
+                                    className="w-full h-auto object-cover rounded-2xl"
+                                    src={heroVideoUrl}
+                                    poster="https://placehold.co/1920x1080"
+                                    loop
+                                    autoPlay
+                                    muted
+                                    playsInline
+                                />
+                            </div>
+
                         </div>
                     </div>
+
+
                 </section>
 
             </div>

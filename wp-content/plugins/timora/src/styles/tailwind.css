@@ -1,4 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Manrope:wght@400;600;700;800&display=swap");
+
 @import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-soft: 0 8px 24px rgba(78, 20, 140, 0.08);
+  --shadow-card: 0 10px 30px rgba(78, 20, 140, 0.1);
+}
 
 .editor-styles-wrapper .wp-block-timora-hero-banner {
   max-width: none !important;
@@ -44,4 +54,18 @@
 .timora-navigation.scrolled .timora-side-button {
   background: #000000;
   color: #ffffff;
+}
+
+/* Hero style  */
+.hero-gradient {
+  --hero-gradient-color1: #613dc1;
+  --hero-gradient-color2: #4e148c;
+  --hero-gradient-color3: #2c0735;
+
+  background: radial-gradient(
+    1200px 600px at 85% 20%,
+    var(--hero-gradient-color1) 0%,
+    var(--hero-gradient-color2) 55%,
+    var(--hero-gradient-color3) 100%
+  );
 }

@@ -26,11 +26,23 @@
     },
     "headingDescription": {
       "type": "string",
-      "default": "Smarter sales, faster decisions: Al powered dashboard with; call analytics, transcripts, summaries and more"
+      "default": "Accept bookings 24/7, manage services and availability, and send automatic confirmations and reminders. Built for solo providers and growing teams."
     },
     "heroVideoUrl": {
       "type": "string",
       "default": ""
+    },
+    "heroColor1": {
+      "type": "string",
+      "default": " #613dc1"
+    },
+    "heroColor2": {
+      "type": "string",
+      "default": "#4e148c"
+    },
+    "heroColor3": {
+      "type": "string",
+      "default": "#2c0735"
     },
     "firstButtonUrl": {
       "type": "string",
@@ -52,7 +64,7 @@
       "type": "string",
       "default": "#000000"
     },
-    "button1TextColor": {
+    "textColor": {
       "type": "string",
       "default": "#FFFFFF"
     }
