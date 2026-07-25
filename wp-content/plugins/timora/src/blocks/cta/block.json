@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "timora/cta",
+  "title": "Timora Call to Action",
+  "icon": "calendar-alt",
+  "description": "Call to Action block in Timora Project.",
+  "category": "text",
+  "keywords": ["call-to-action", "description", "intro"],
+  "version": "1",
+  "textdomain": "timora",
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./frontend.js",
+  "style": "file:./index.css",
+  "attributes": {
+    "ctaTitle": {
+      "type": "string",
+      "default": "Ready to streamline your schedule?"
+    },
+    "ctaDesc": {
+      "type": "string",
+      "default": "Start accepting bookings in minutes — switch from spreadsheets to a delightful, powerful system."
+    },
+    "ctaBtn1Text": {
+      "type": "string",
+      "default": "Book an appointment"
+    },
+    "ctaBtn1URL": {
+      "type": "string",
+      "default": "/providers"
+    },
+    "ctaBtn2Text": {
+      "type": "string",
+      "default": "Become a provider"
+    },
+    "ctaBtn2URL": {
+      "type": "string",
+      "default": "#providers-form"
+    }
+  }
+}
