@@ -1,5 +1,7 @@
 <?php
 
+use WpOrg\Requests\Capability;
+
 function register_testimonials_route()
 {
     register_rest_route("timora", "/testimonials", [
@@ -22,6 +24,12 @@ function register_testimonials_route()
     register_rest_route("timora", "/services", [
         "methods" => "GET",
         "callback" => "get_timora_services",
+        "permission_callback" => "__return_true"
+    ]);
+
+    register_rest_route("timora", "/provider-register", [
+        "methods" => "POST",
+        "callback" => "post_provider_registrations",
         "permission_callback" => "__return_true"
     ]);
 };
@@ -175,7 +183,129 @@ function post_timora_bookings(WP_REST_Request $request)
     ], 200);
 }
 
+function post_provider_registrations(WP_REST_Request $request)
+{
+    $params = $request->get_json_params();
 
+    $businessName = sanitize_text_field($params["businessName"]) ?? "";
+    $ownerName = sanitize_text_field($params["ownerName"]) ?? "";
+    $email = sanitize_email($params["email"]) ?? "";
+    $password = $params["password"] ?? "";
+    $industry = absint($params["industry"]) ?? "";
+    // $phone = sanitize_text_field($params["phone"]) ?? "";
+    // $website = sanitize_text_field($params["website"]) ?? "";
+    // $description = sanitize_textarea_field($params["description"]) ?? "";
+
+    if (empty($businessName)) {
+        return new WP_REST_Response([
+            "success" => false,
+            "message" => "Business name is required!"
+        ], 400);
+    }
+
+    if (empty($ownerName)) {
+        return new WP_REST_Response([
+            "success" => false,
+            "message" => "Owner name is required!"
+        ], 400);
+    }
+
+    if (!is_email($email)) {
+        return new WP_REST_Response([
+            "success" => false,
+            "message" => "Email is not valid!"
+        ], 400);
+    }
+
+    if (email_exists($email)) {
+        return new WP_REST_Response([
+            "success" => false,
+            "message" => "Email is already existed!"
+        ], 409);
+    }
+
+    if (strlen($password) < 8) {
+        return new WP_REST_Response([
+            "status" => false,
+            "message" => "Email needs to have not more than 8 characters!"
+        ], 400);
+    }
+
+    if (empty($password)) {
+        return new WP_REST_Response([
+            "success" => false,
+            "message" => "Password is required!"
+        ], 400);
+    }
+
+    if ($industry === "") {
+        return new WP_REST_Response([
+            "success" => false,
+            "message" => "Industry field must be picked!"
+        ], 400);
+    }
+
+
+    $user_id = wp_insert_user([
+        "user_login" => $email,
+        "user_email" => $email,
+        "user_pass" => $password,
+        "display_name" => $ownerName,
+        "role" => "pending_provider"
+    ]);
+
+    if (is_wp_error($user_id)) {
+        return new WP_REST_Response([
+            "status" => false,
+            "message" => $user_id->get_error_message()
+        ], 500);
+    }
+
+    $provider_id = wp_insert_post(
+        [
+            "post_type" => "provider",
+            "post_title" => $businessName,
+            "post_status" => "pending",
+        ]
+    );
+
+    update_post_meta(
+        $provider_id,
+        "owner_user",
+        $user_id
+    );
+
+    update_post_meta(
+        $provider_id,
+        "owner_name",
+        $ownerName
+    );
+
+    update_post_meta(
+        $provider_id,
+        "provider_email",
+        $email
+    );
+
+    update_post_meta(
+        $provider_id,
+        "provider_password",
+        $password
+    );
+
+    wp_set_object_terms(
+        $provider_id,
+        $industry,
+        "provider_category"
+    );
+
+
+
+    return new WP_REST_Response([
+        "success" => true,
+        "message" => "You are succesfully become the provider!",
+    ], 200);
+}
 
 
 function get_free_timora_bookings_slot(WP_REST_Request $request)

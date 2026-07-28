@@ -34,7 +34,9 @@ function register_timora_blocks()
         ["name" => "bookings"],
         ["name" => "about-us"],
         ["name" => "team-members"],
-        ["name" => "cta"]
+        ["name" => "cta"],
+        ["name" => "providers"],
+        ["name" => "providers-registration"]
     ];
 
     foreach ($blocks as $block) {

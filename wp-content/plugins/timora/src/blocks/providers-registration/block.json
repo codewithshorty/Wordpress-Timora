@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "timora/providers-registration",
+  "title": "Timora providers registration",
+  "icon": "calendar-alt",
+  "description": "Providers registration block in Timora Project.",
+  "category": "text",
+  "keywords": ["providers", "registration"],
+  "version": "1",
+  "textdomain": "timora",
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./frontend.js",
+  "render": "file:./render.php"
+}

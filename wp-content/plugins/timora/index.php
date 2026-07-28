@@ -28,6 +28,7 @@ include(TIMORA_DIR . "includes/register-timora-service-metabox.php");
 
 include(TIMORA_DIR . "includes/register-timora-routes.php");
 include(TIMORA_DIR . "includes/database.php");
+include(TIMORA_DIR . "includes/register-timora-taxonomies.php");
 
 // HOOKS
 add_action("init", "register_timora_blocks");
@@ -41,3 +42,7 @@ add_action("save_post_service", "save_timora_service_meta");
 
 add_action("rest_api_init", 'register_testimonials_route');
 register_activation_hook(__FILE__, "create_timora_booking_table");
+
+add_action("init", "register_provider_post_type");
+
+add_action("init", "register_provider_taxonomy");
