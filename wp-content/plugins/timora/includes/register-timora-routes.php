@@ -192,9 +192,10 @@ function post_provider_registrations(WP_REST_Request $request)
     $email = sanitize_email($params["email"]) ?? "";
     $password = $params["password"] ?? "";
     $industry = absint($params["industry"]) ?? "";
-    // $phone = sanitize_text_field($params["phone"]) ?? "";
+    $phone = sanitize_text_field($params["phone"]) ?? "";
+    $city = sanitize_text_field($params["city"]) ?? "";
     // $website = sanitize_text_field($params["website"]) ?? "";
-    // $description = sanitize_textarea_field($params["description"]) ?? "";
+    $description = sanitize_textarea_field($params["description"]) ?? "";
 
     if (empty($businessName)) {
         return new WP_REST_Response([
@@ -265,7 +266,9 @@ function post_provider_registrations(WP_REST_Request $request)
         [
             "post_type" => "provider",
             "post_title" => $businessName,
+            "post_content" => $description,
             "post_status" => "pending",
+
         ]
     );
 
@@ -298,6 +301,19 @@ function post_provider_registrations(WP_REST_Request $request)
         $industry,
         "provider_category"
     );
+
+    update_post_meta(
+        $provider_id,
+        "provider_phone",
+        $phone
+    );
+
+    update_post_meta(
+        $provider_id,
+        "provider_city",
+        $city
+    );
+
 
 
 

@@ -17,10 +17,10 @@ document.addEventListener("DOMContentLoaded", () => {
             email: document.querySelector("#email").value,
             password: document.querySelector("#password").value,
             industry: document.querySelector("#industry").value,
-            // phone: document.querySelector("#phone").value,
+            phone: document.querySelector("#phone").value,
             // website: document.querySelector("#website").value,
-            // city: document.querySelector("#city").value,
-            // description: document.querySelector("#description").value,
+            city: document.querySelector("#city").value,
+            description: document.querySelector("#description").value,
         };
 
         console.log(data);

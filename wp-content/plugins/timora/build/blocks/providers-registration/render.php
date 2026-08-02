@@ -5,6 +5,10 @@ $provider_categories = get_terms([
     "hide_empty" => false
 ]);
 
+$cities_file = TIMORA_DIR . "src/assets/cities.json";
+
+$cities_list = json_decode(file_get_contents($cities_file), true);
+
 ?>
 
 <section id="contact" class="py-20 bg-[#f9fbff]">
@@ -53,7 +57,27 @@ $provider_categories = get_terms([
                             <?php endforeach; ?>
                         </select>
                     </div>
+                    <div>
+                        <label class="block text-sm font-medium text-[#2c0735]">Phone</label>
+                        <input type="text" id="phone" class="mt-1 w-full rounded-xl border border-[#4e148c]/25 px-3 py-2 text-sm focus-ring" placeholder="Owner's phone">
+                    </div>
 
+                    <div>
+                        <label class="block text-sm font-medium text-[#2c0735]">City </label>
+                        <select id="city" class="mt-1 w-full rounded-xl border border-[#4e148c]/25 px-3 py-2 text-sm focus-ring">
+                            <?php foreach ($cities_list as $city): ?>
+                                <option value="<?php echo esc_attr($city["zip"]); ?>">
+                                    <?php echo esc_html($city["city"]); ?>
+                                </option>
+                            <?php endforeach; ?>
+
+                        </select>
+
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-[#2c0735]">Description</label>
+                        <textarea id="description" class="mt-1 w-full rounded-xl border border-[#4e148c]/25 px-3 py-2 text-sm focus-ring" placeholder="Owner's description"></textarea>
+                    </div>
                     <button id="register_provider" class="inline-flex items-center gap-2 rounded-xl bg-[#613dc1] px-5 py-3 text-white hover:bg-[#4e148c] transition-colors shadow-soft focus-ring" type="submit">
                         <i class="bi bi-envelope-paper-heart"></i>
                         Register as a provider
