@@ -1,4 +1,5 @@
 <?php
+
 function register_testimonial_post_type()
 {
     $labels = array(
@@ -48,7 +49,6 @@ function register_testimonial_post_type()
 
     register_post_type('testimonial', $args);
 }
-
 
 
 function register_service_post_type()
@@ -150,4 +150,54 @@ function register_provider_post_type()
     );
 
     register_post_type('provider', $args);
+}
+
+function register_team_members_post_type()
+{
+    $labels = array(
+        'name'                  => _x('Team Members', 'Post type general name', 'team member'),
+        'singular_name'         => _x('Team member', 'Post type singular name', 'team member'),
+        'menu_name'             => _x('Team Members', 'Admin Menu text', 'team member'),
+        'name_admin_bar'        => _x('Team member', 'Add New on Toolbar', 'team member'),
+        'add_new'               => __('Add New', 'team member'),
+        'add_new_item'          => __('Add New team member', 'team member'),
+        'new_item'              => __('New team member', 'team member'),
+        'edit_item'             => __('Edit team member', 'team member'),
+        'view_item'             => __('View team member', 'team member'),
+        'all_items'             => __('All team members', 'team member'),
+        'search_items'          => __('Search team members', 'team member'),
+        'parent_item_colon'     => __('Parent team members:', 'team member'),
+        'not_found'             => __('No team members found.', 'team member'),
+        'not_found_in_trash'    => __('No team members found in Trash.', 'team member'),
+        'featured_image'        => _x('Team member Cover Image', 'Overrides the “Featured Image” phrase for this post type. Added in 4.3', 'team member'),
+        'set_featured_image'    => _x('Set cover image', 'Overrides the “Set featured image” phrase for this post type. Added in 4.3', 'team member'),
+        'remove_featured_image' => _x('Remove cover image', 'Overrides the “Remove featured image” phrase for this post type. Added in 4.3', 'team member'),
+        'use_featured_image'    => _x('Use as cover image', 'Overrides the “Use as featured image” phrase for this post type. Added in 4.3', 'team member'),
+        'archives'              => _x('Team member archives', 'The post type archive label used in nav menus. Default “Post Archives”. Added in 4.4', 'team member'),
+        'insert_into_item'      => _x('Insert into team member', 'Overrides the “Insert into post”/”Insert into page” phrase (used when inserting media into a post). Added in 4.4', 'team member'),
+        'uploaded_to_this_item' => _x('Uploaded to this team member', 'Overrides the “Uploaded to this post”/”Uploaded to this page” phrase (used when viewing media attached to a post). Added in 4.4', 'team member'),
+        'filter_items_list'     => _x('Filter team members list', 'Screen reader text for the filter links heading on the post type listing screen. Default “Filter posts list”/”Filter pages list”. Added in 4.4', 'team member'),
+        'items_list_navigation' => _x('Team Members list navigation', 'Screen reader text for the pagination heading on the post type listing screen. Default “Posts list navigation”/”Pages list navigation”. Added in 4.4', 'team member'),
+        'items_list'            => _x('Team Members list', 'Screen reader text for the items list heading on the post type listing screen. Default “Posts list”/”Pages list”. Added in 4.4', 'team member'),
+    );
+    $args = array(
+        'labels'             => $labels,
+        'description'        => 'Team member custom post type.',
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => array('slug' => 'team member'),
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => 20,
+        'menu_icon'          => "dashicons-admin-users",
+        'supports'           => array('title', 'editor', 'author', 'thumbnail'),
+        // 'taxonomies'         => array('category', 'post_tag'),
+        'show_in_rest'       => true
+    );
+
+    register_post_type('team_member', $args);
 }

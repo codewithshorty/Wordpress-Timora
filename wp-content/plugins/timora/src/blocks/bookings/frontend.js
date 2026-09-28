@@ -26,7 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
             date: document.querySelector("#booking-date").value,
             time: document.querySelector("#booking-time").value,
             notes: document.querySelector("#booking-notes").value,
-            service: document.querySelector("#booking-service").value
+            service: document.querySelector("#booking-service").value,
+            provider: document.querySelector("#booking-provider").value
         }
 
         console.log(formData);
@@ -40,16 +41,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             form.reset();
             messageContainer.className = "rounded-lg mt-2 px-2 py-4 text-center font-semibold bg-green-100 text-green-700 block";
-
             messageContainer.textContent = response.message;
-
             console.log(response);
         } catch (error) {
             messageContainer.className = "rounded-lg mt-2 px-2 py-4 text-center font-semibold bg-red-100 text-red-700 block";
             messageContainer.textContent = error.message;
-
-
-
             console.error(error);
         } finally {
             submitBtn.textContent = "Book";
@@ -66,18 +62,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const dateSelected = document.querySelector("#booking-date");
     const timeSelected = document.querySelector("#booking-time");
     const serviceSelected = document.querySelector("#booking-service");
+    const providerSelected = document.querySelector("#booking-provider");
     console.log(serviceSelected);
+    console.log(providerSelected);
 
-    async function loadAvailableSlots(date, service) {
+    async function loadAvailableSlots(date, service, provider) {
 
-        if (!date || !service) {
+        if (!date || !service || !provider) {
             return;
         }
 
         try {
 
             const response = await apiFetch({
-                path: `/timora/free-slots/?date=${date}&service=${service}`,
+                path: `/timora/free-slots/?date=${date}&service=${service}&provider=${provider}`,
                 method: "GET"
             });
 
@@ -109,21 +107,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const date = dateSelected.value;
         const service = serviceSelected.value;
+        const provider = providerSelected.value;
 
-        if (!date || !service) {
+        if (!date || !service || !provider) {
             return;
         }
 
-        loadAvailableSlots(date, service);
+        loadAvailableSlots(date, service, provider);
 
     }
 
 
     async function loadServices() {
+
+        const provider = providerSelected.value;
+        console.log(`OVO je ucitan provider selectes iz forme ${providerSelected.value}` );
+
+        if (!provider) {
+            serviceSelected.innerHTML = "";
+            return;
+        }
+
         console.log("services loading...");
         try {
             const services = await apiFetch({
-                "path": "/timora/services",
+                "path": `/timora/services?provider=${provider}`,
                 "method": "GET"
             });
 
@@ -152,12 +160,44 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (error) {
             console.error(error);
         }
+    }
 
+
+    async function loadProviders() {
+        console.log("providers loading...");
+        try {
+            const providers = await apiFetch({
+                "path": "/timora/providers",
+                "method": "GET"
+            });
+
+            console.log(providers);
+
+            providerSelected.innerHTML = "";
+            const firsOptionProvider = document.createElement("option");
+            firsOptionProvider.value = "";
+            firsOptionProvider.textContent = "Select provider";
+            providerSelected.appendChild(firsOptionProvider);
+
+            providers.forEach((provider) => {
+                const option = document.createElement("option");
+                option.value = provider.id;
+                option.textContent = `${provider.title}`;
+                providerSelected.appendChild(option);
+            })
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     loadServices();
+    loadProviders();
 
     dateSelected.addEventListener("change", refreshSlots);
     serviceSelected.addEventListener("change", refreshSlots);
+    providerSelected.addEventListener("change",()=>{
+        loadServices();
+        refreshSlots();
+    });
 
 });

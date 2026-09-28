@@ -117,7 +117,8 @@ document.addEventListener("DOMContentLoaded", () => {
       date: document.querySelector("#booking-date").value,
       time: document.querySelector("#booking-time").value,
       notes: document.querySelector("#booking-notes").value,
-      service: document.querySelector("#booking-service").value
+      service: document.querySelector("#booking-service").value,
+      provider: document.querySelector("#booking-provider").value
     };
     console.log(formData);
     try {
@@ -145,14 +146,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const dateSelected = document.querySelector("#booking-date");
   const timeSelected = document.querySelector("#booking-time");
   const serviceSelected = document.querySelector("#booking-service");
+  const providerSelected = document.querySelector("#booking-provider");
   console.log(serviceSelected);
-  async function loadAvailableSlots(date, service) {
-    if (!date || !service) {
+  console.log(providerSelected);
+  async function loadAvailableSlots(date, service, provider) {
+    if (!date || !service || !provider) {
       return;
     }
     try {
       const response = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default()({
-        path: `/timora/free-slots/?date=${date}&service=${service}`,
+        path: `/timora/free-slots/?date=${date}&service=${service}&provider=${provider}`,
         method: "GET"
       });
       timeSelected.innerHTML = "";
@@ -173,16 +176,23 @@ document.addEventListener("DOMContentLoaded", () => {
   function refreshSlots() {
     const date = dateSelected.value;
     const service = serviceSelected.value;
-    if (!date || !service) {
+    const provider = providerSelected.value;
+    if (!date || !service || !provider) {
       return;
     }
-    loadAvailableSlots(date, service);
+    loadAvailableSlots(date, service, provider);
   }
   async function loadServices() {
+    const provider = providerSelected.value;
+    console.log(`OVO je ucitan provider selectes iz forme ${providerSelected.value}`);
+    if (!provider) {
+      serviceSelected.innerHTML = "";
+      return;
+    }
     console.log("services loading...");
     try {
       const services = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default()({
-        "path": "/timora/services",
+        "path": `/timora/services?provider=${provider}`,
         "method": "GET"
       });
       console.log(services);
@@ -203,9 +213,37 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error(error);
     }
   }
+  async function loadProviders() {
+    console.log("providers loading...");
+    try {
+      const providers = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default()({
+        "path": "/timora/providers",
+        "method": "GET"
+      });
+      console.log(providers);
+      providerSelected.innerHTML = "";
+      const firsOptionProvider = document.createElement("option");
+      firsOptionProvider.value = "";
+      firsOptionProvider.textContent = "Select provider";
+      providerSelected.appendChild(firsOptionProvider);
+      providers.forEach(provider => {
+        const option = document.createElement("option");
+        option.value = provider.id;
+        option.textContent = `${provider.title}`;
+        providerSelected.appendChild(option);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
   loadServices();
+  loadProviders();
   dateSelected.addEventListener("change", refreshSlots);
   serviceSelected.addEventListener("change", refreshSlots);
+  providerSelected.addEventListener("change", () => {
+    loadServices();
+    refreshSlots();
+  });
 });
 })();
 

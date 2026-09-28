@@ -66,7 +66,7 @@ $cities_list = json_decode(file_get_contents($cities_file), true);
                         <label class="block text-sm font-medium text-[#2c0735]">City </label>
                         <select id="city" class="mt-1 w-full rounded-xl border border-[#4e148c]/25 px-3 py-2 text-sm focus-ring">
                             <?php foreach ($cities_list as $city): ?>
-                                <option value="<?php echo esc_attr($city["zip"]); ?>">
+                                <option value="<?php echo esc_attr($city["city"]); ?>">
                                     <?php echo esc_html($city["city"]); ?>
                                 </option>
                             <?php endforeach; ?>

@@ -78,8 +78,22 @@ $textColor = $attributes["formTxtColor"] ?? "";
 
                 </div>
 
-                <!-- Calendar & Time -->
-                <div class="grid md:grid-cols-3 gap-4" style="background-color:<?php echo $bgColor ?>">
+                <!-- Provider & Service -->
+                <div class="grid md:grid-cols-2 gap-6" style="background-color:<?php echo $bgColor ?>">
+
+                    <div>
+                        <label class="block font-semibold mb-2" style="color:<?php echo $textColor ?>">
+                            Provider
+                        </label>
+
+                        <select id="booking-provider"
+                            class="w-full rounded-xl bg-white px-5 py-4 text-black outline-none border border-transparent focus:border-white transition duration-300">
+
+                            <option value="">
+                                Pick a provider
+                            </option>
+                        </select>
+                    </div>
 
                     <div>
                         <label class="block font-semibold mb-2" style="color:<?php echo $textColor ?>">
@@ -95,6 +109,11 @@ $textColor = $attributes["formTxtColor"] ?? "";
                         </select>
                     </div>
 
+                </div>
+
+                <!-- Calendar & Time -->
+                <div class="grid md:grid-cols-2 gap-6" style="background-color:<?php echo $bgColor ?>">
+
                     <div>
                         <label class="block font-semibold mb-2" style="color:<?php echo $textColor ?>">
                             Calendar
@@ -107,7 +126,7 @@ $textColor = $attributes["formTxtColor"] ?? "";
                     </div>
 
                     <div>
-                        <label class="block text-white font-semibold mb-2">
+                        <label class="block font-semibold mb-2" style="color:<?php echo $textColor ?>">
                             Time
                         </label>
 

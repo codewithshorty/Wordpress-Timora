@@ -1,6 +1,5 @@
 <?php
 
-use WpOrg\Requests\Capability;
 
 function register_testimonials_route()
 {
@@ -27,6 +26,12 @@ function register_testimonials_route()
         "permission_callback" => "__return_true"
     ]);
 
+    register_rest_route("timora", "/providers", [
+        "methods" => "GET",
+        "callback" => "get_timora_providers",
+        "permission_callback" => "__return_true"
+    ]);
+
     register_rest_route("timora", "/provider-register", [
         "methods" => "POST",
         "callback" => "post_provider_registrations",
@@ -50,38 +55,74 @@ function get_timora_testimonials()
     }, $testimonials);
 }
 
-function get_timora_services()
+function get_timora_services(WP_REST_Request $request)
 {
-    $services = get_posts([
-        "post_type" => "service",
+    $provider_id = absint($request->get_param("provider"));
+
+    if (!$provider_id) {
+        return new WP_REST_Response(
+            [
+                "success" => false,
+                "message" => "Provider ID is required"
+            ],
+            400
+        );
+    } else {
+        $services = get_posts([
+            "post_type" => "service",
+            "posts_per_page" => -1,
+            "post_status" => "publish",
+            "orderby" => "title",
+            "order" => "ASC",
+            "meta_query" => [
+                [
+                    "key" => "provider_service",
+                    "value" => $provider_id,
+                    "compare" => "="
+                ]
+            ]
+        ]);
+
+        $response = [];
+        foreach ($services as $service) {
+            
+            $response[] = [
+                "id" => $service->ID,
+                "title" => $service->post_title,
+                "duration" => get_post_meta(
+                    $service->ID,
+                    "duration",
+                    true
+                ),
+                "price" => get_post_meta(
+                    $service->ID,
+                    "price",
+                    true
+                )
+            ];
+        }
+        return new WP_REST_Response($response, 200);
+    }
+}
+
+function get_timora_providers(){
+    $providers = get_posts([
+        "post_type" => "provider",
         "posts_per_page" => -1,
         "post_status" => "publish",
+        "orderby" => "title",
         "order" => "ASC"
     ]);
 
     $response = [];
-
-    foreach ($services as $service) {
+    foreach ($providers as $provider){
         $response[] = [
-            "id" => $service->ID,
-            "title" => $service->post_title,
-            "duration" => get_post_meta(
-                $service->ID,
-                "duration",
-                true
-            ),
-            "price" => get_post_meta(
-                $service->ID,
-                "price",
-                true
-            )
-
+            "id" => $provider->ID,
+            "title" => $provider->post_title
         ];
     }
-
     return new WP_REST_Response($response, 200);
 }
-
 
 function post_timora_bookings(WP_REST_Request $request)
 {
@@ -96,7 +137,7 @@ function post_timora_bookings(WP_REST_Request $request)
     $time = sanitize_text_field($params["time"] ?? "");
     $notes = sanitize_textarea_field($params["notes"] ?? "");
     $service = absint($params["service"] ?? "");
-
+    $provider = absint($params["provider"] ?? "");
 
 
     if (empty($name)) {
@@ -105,6 +146,7 @@ function post_timora_bookings(WP_REST_Request $request)
             "message" => "Name is required"
         ], 400);
     }
+
 
     if (empty($surname)) {
         return new WP_REST_Response([
@@ -119,6 +161,12 @@ function post_timora_bookings(WP_REST_Request $request)
             "message" => "Invalid phone number"
         ], 400);
     }
+    if(empty($email)) {
+        return new WP_REST_Response([
+            "success" => false,
+            "message" => "Email is required"
+        ], 400);
+    }
 
     if (!is_email($email)) {
         return new WP_REST_Response([
@@ -127,12 +175,41 @@ function post_timora_bookings(WP_REST_Request $request)
         ], 400);
     };
 
+
+    if(empty($date)){
+        return new WP_REST_Response([
+            "success" => false,
+            "message" =>"Date is required"
+        ]);
+    };
+
     if (strtotime($date) < strtotime(date("Y-m-d"))) {
         return new WP_REST_Response([
             "success" => false,
             "message" => "Can't pick date in the past"
         ], 400);
-    }
+    };
+
+    if(empty($time)){
+        return new WP_REST_Response([
+            "success" => false,
+            "message" =>"Time is required"
+        ], 400);
+    };
+
+    if(empty($service)){
+        return new WP_REST_Response([
+            "success" => false,
+            "message" =>"Service is required"
+        ], 400);
+    };
+
+    if(empty($provider)){
+        return new WP_REST_Response([
+            "success" => false,
+            "message" =>"Provider is required"
+        ], 400);
+    };
 
     global $wpdb;
 
@@ -142,10 +219,12 @@ function post_timora_bookings(WP_REST_Request $request)
         $wpdb->prepare(
             "SELECT COUNT(*)
             FROM $table_name
-            WHERE booking_date = %s
-            AND booking_time = %s",
+            WHERE booking_date = %s,
+            AND booking_time = %s,
+            AND provider_id = %d",
             $date,
-            $time
+            $time,
+            $provider
         )
     );
 
@@ -166,7 +245,8 @@ function post_timora_bookings(WP_REST_Request $request)
             "booking_date" => $date,
             "booking_time" => $time,
             "notes" => $notes,
-            "service_id" => $service
+            "service_id" => $service,
+            "provider_id" => $provider
         ]
     );
 
