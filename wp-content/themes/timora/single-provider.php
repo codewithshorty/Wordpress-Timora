@@ -7,6 +7,13 @@ $provider_phone = get_post_meta(get_the_ID(), "provider_phone", true);
 $provider_email = get_post_meta(get_the_ID(), "provider_email", true);
 $provider_website = get_post_meta(get_the_ID(), "provider_website", true);
 $provider_categories = get_the_terms(get_the_ID(), "provider_category");
+$provider_monday_hours = get_post_meta(get_the_ID(), "provider_monday_time", true);
+$provider_tuesday_hours = get_post_meta(get_the_ID(), "provider_tuesday_time", true);
+$provider_wednesday_hours = get_post_meta(get_the_ID(), "provider_wednesday_time", true);
+$provider_thursday_hours = get_post_meta(get_the_ID(), "provider_thursday_time", true);
+$provider_friday_hours = get_post_meta(get_the_ID(), "provider_friday_time", true);
+$provider_saturday_hours = get_post_meta(get_the_ID(), "provider_saturday_time", true);
+$provider_sunday_hours = get_post_meta(get_the_ID(), "provider_sunday_time", true);
 
 function get_timora_provider_services($pr_id)
 
@@ -471,6 +478,7 @@ $testimonials = get_timora_provider_testimonials($provider_id);
                 <h3 class="text-2xl font-semibold" style="color:#4E148C;">Working Hours</h3>
                 <p class="text-sm text-gray-600 mt-2">Appointment availability may vary depending on service duration and existing bookings.</p>
 
+
                 <table class="w-full mt-4 text-sm text-left">
                     <thead class="text-xs uppercase text-gray-500">
                         <tr>
@@ -481,31 +489,31 @@ $testimonials = get_timora_provider_testimonials($provider_id);
                     <tbody>
                         <tr class="border-b">
                             <td class="py-2">Monday</td>
-                            <td class="py-2">09:00 – 17:00</td>
+                            <td class="py-2"><?php echo esc_html($provider_monday_hours) ?></td>
                         </tr>
                         <tr class="border-b">
                             <td class="py-2">Tuesday</td>
-                            <td class="py-2">09:00 – 17:00</td>
+                            <td class="py-2"><?php echo esc_html($provider_tuesday_hours) ?></td>
                         </tr>
                         <tr class="border-b">
                             <td class="py-2">Wednesday</td>
-                            <td class="py-2">09:00 – 17:00</td>
+                            <td class="py-2"><?php echo esc_html($provider_wednesday_hours) ?></td>
                         </tr>
                         <tr class="border-b">
                             <td class="py-2">Thursday</td>
-                            <td class="py-2">09:00 – 17:00</td>
+                            <td class="py-2"><?php echo esc_html($provider_thursday_hours) ?></td>
                         </tr>
                         <tr class="border-b">
                             <td class="py-2">Friday</td>
-                            <td class="py-2">09:00 – 17:00</td>
+                            <td class="py-2"><?php echo esc_html($provider_friday_hours) ?></td>
                         </tr>
                         <tr class="border-b">
                             <td class="py-2">Saturday</td>
-                            <td class="py-2">09:00 – 14:00</td>
+                            <td class="py-2"><?php echo esc_html($provider_saturday_hours) ?></td>
                         </tr>
                         <tr class="border-b">
                             <td class="py-2" style="color:#2C0735;">Sunday</td>
-                            <td class="py-2" style="color:#2C0735;">Closed</td>
+                            <td class="py-2" style="color:#2C0735;"><?php echo esc_html($provider_sunday_hours) ?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -545,6 +553,8 @@ $testimonials = get_timora_provider_testimonials($provider_id);
                                 <?php endwhile; ?>
                                 <?php wp_reset_postdata(); ?>
                             </select>
+                            <?php else:?>
+                                <div class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-sm text-gray-500">No services found. Please add services in the dashboard.</div>
                         <?php endif; ?>
 
                     </div>
