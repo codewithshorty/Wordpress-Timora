@@ -220,7 +220,7 @@ function post_timora_bookings(WP_REST_Request $request)
             "SELECT COUNT(*)
             FROM $table_name
             WHERE booking_date = %s,
-            AND booking_time = %s,
+            AND booking_time = %s
             AND provider_id = %d",
             $date,
             $time,
@@ -246,7 +246,8 @@ function post_timora_bookings(WP_REST_Request $request)
             "booking_time" => $time,
             "notes" => $notes,
             "service_id" => $service,
-            "provider_id" => $provider
+            "provider_id" => $provider,
+            "created_at" => current_time("mysql")
         ]
     );
 
