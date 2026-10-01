@@ -3,7 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const providerBookingId = document.querySelector("#provider-booking-id");
     const bookingDate = document.querySelector("#booking-date");
     const bookingTime = document.querySelector("#booking-time");
-
+    const displaySummary = document.querySelector("#summary");
+    displaySummary.style.display = "none";
     if (!providerBookingId || !bookingDate || !bookingTime || !serviceSelect) {
         console.error("Booking elements needs to be added");
         return;
@@ -27,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function displayPickedDetails() {
+        displaySummary.style.display = "block";
+
 
         const serviceName = serviceSelect.selectedOptions[0].dataset.title;
         const serviceDuration = serviceSelect.selectedOptions[0].dataset.duration;
@@ -38,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const displayService = document.querySelector(".display-service");
 
+
         displayService.textContent = serviceName;
 
         displayDuration.forEach((singleNode) => {
@@ -45,17 +49,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         displayPrice.forEach((singleNode) => {
-            singleNode.textContent = servicePrice;
+            singleNode.textContent = servicePrice + " RSD";
         });
     }
+    const displayDate = document.querySelector(".display-date");
+    displayDate.style.display = "none";
 
     bookingDate.addEventListener("change", () => {
-        const displayDate = document.querySelector(".display-date");
+        displayDate.style.display = "inline";
         displayDate.textContent = bookingDate.value;
     });
 
+    const displayTime = document.querySelector(".display-time");
+    displayTime.style.display = "none";
+
     bookingTime.addEventListener("change", () => {
-        const displayTime = document.querySelector(".display-time");
+        displayTime.style.display = "inline";
         displayTime.textContent = bookingTime.value;
     });
 
@@ -120,6 +129,8 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Form submitted");
         const submitButton = document.querySelector("button[type='submit']")
         const bookingFormMessage = document.querySelector("#booking-form-message");
+        const displayDuration = document.querySelector(".display-duration");
+        const displayPrice = document.querySelector(".display-price");
         const data = {
             service: serviceSelect.value,
             date: bookingDate.value,
@@ -146,6 +157,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 "data": data
             });
             console.log(response);
+            bookingForm.reset();
+            displaySummary.style.display = "none";
+            displayDuration.textContent = "";
+            displayPrice.textContent = "";
             bookingFormMessage.innerHTML = `<div class='bg-green-500 text-white px-5 py-3 rounded-md '>${response.message}</div>`;
         } catch (error) {
             console.error(error);

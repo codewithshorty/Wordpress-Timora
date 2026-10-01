@@ -489,31 +489,31 @@ $testimonials = get_timora_provider_testimonials($provider_id);
                     <tbody>
                         <tr class="border-b">
                             <td class="py-2">Monday</td>
-                            <td class="py-2"><?php echo esc_html($provider_monday_hours) ?></td>
+                            <td class="py-2"><?php echo esc_html($provider_monday_hours) ? esc_html($provider_monday_hours) : "Closed" ?></td>
                         </tr>
                         <tr class="border-b">
                             <td class="py-2">Tuesday</td>
-                            <td class="py-2"><?php echo esc_html($provider_tuesday_hours) ?></td>
+                            <td class="py-2"><?php echo esc_html($provider_tuesday_hours) ? esc_html($provider_tuesday_hours) : "Closed" ?></td>
                         </tr>
                         <tr class="border-b">
                             <td class="py-2">Wednesday</td>
-                            <td class="py-2"><?php echo esc_html($provider_wednesday_hours) ?></td>
+                            <td class="py-2"><?php echo esc_html($provider_wednesday_hours) ? esc_html($provider_wednesday_hours) : "Closed" ?></td>
                         </tr>
                         <tr class="border-b">
                             <td class="py-2">Thursday</td>
-                            <td class="py-2"><?php echo esc_html($provider_thursday_hours) ?></td>
+                            <td class="py-2"><?php echo esc_html($provider_thursday_hours) ? esc_html($provider_thursday_hours) : "Closed" ?></td>
                         </tr>
                         <tr class="border-b">
                             <td class="py-2">Friday</td>
-                            <td class="py-2"><?php echo esc_html($provider_friday_hours) ?></td>
+                            <td class="py-2"><?php echo esc_html($provider_friday_hours) ? esc_html($provider_friday_hours) : "Closed" ?></td>
                         </tr>
                         <tr class="border-b">
                             <td class="py-2">Saturday</td>
-                            <td class="py-2"><?php echo esc_html($provider_saturday_hours) ?></td>
+                            <td class="py-2"><?php echo esc_html($provider_saturday_hours) ? esc_html($provider_saturday_hours) : "Closed" ?></td>
                         </tr>
                         <tr class="border-b">
                             <td class="py-2" style="color:#2C0735;">Sunday</td>
-                            <td class="py-2" style="color:#2C0735;"><?php echo esc_html($provider_sunday_hours) ?></td>
+                            <td class="py-2" style="color:#2C0735;"><?php echo esc_html($provider_sunday_hours) ? esc_html($provider_sunday_hours) : "Closed" ?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -561,7 +561,7 @@ $testimonials = get_timora_provider_testimonials($provider_id);
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Selected Service Details</label>
                         <div class="py-2 px-3 rounded-md border border-gray-300 bg-white text-sm text-gray-700" id="service-details">
-                            Duration: <span class="display-duration font-bold"></span> • Price: <span class="display-price font-bold"></span> RSD
+                            Duration: <span class="display-duration font-bold"></span> - Price: <span class="display-price font-bold"></span>
                         </div>
                     </div>
                 </div>
@@ -665,8 +665,15 @@ $testimonials = get_timora_provider_testimonials($provider_id);
                 <div class="mt-6 border-t pt-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div class="bg-white border rounded-md p-4">
                         <div class="text-sm text-gray-700">Summary</div>
-                        <div class="mt-2 text-sm" id="summary">
+                        <!-- <div class="mt-2 text-sm" id="summary">
                             Service: <span class="display-service"></span> • Date: <span class="display-date"></span> • Time: <span class="display-time"></span> • Duration: <span class="display-duration font-bold"></span> • Price: <span class="display-price font-bold"></span> RSD
+                        </div> -->
+                        <div class="mt-2 text-sm grid grid-cols-5 justify-start items-center" id="summary">
+                            <div class="display-service text-xs font-bold inline-block mb-0.5 mr-0.5 px-2 py-2 bg-indigo-400 text-white rounded-md"></div> 
+                            <div class="display-duration text-xs font-bold inline-block mb-0.5 mr-0.5 px-2 py-2 bg-indigo-400 text-white rounded-md"></div> 
+                            <div class="display-price text-xs font-bold inline-block mb-0.5 mr-0.5 px-2 py-2 bg-indigo-400 text-white rounded-md"></div>
+                            <div class="display-date text-xs font-bold inline-block mb-0.5 mr-0.5 px-2 py-2 bg-indigo-400 text-white rounded-md"></div> 
+                            <div class="display-time text-xs font-bold inline-block mb-0.5 mr-0.5 px-2 py-2 bg-indigo-400 text-white rounded-md"></div> 
                         </div>
                     </div>
                     <div class="flex items-center justify-end">
