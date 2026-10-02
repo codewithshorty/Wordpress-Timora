@@ -17,10 +17,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (datasetCategory === "all" || providersCategories.includes(datasetCategory)) {
                     setTimeout(() => {
-                        provider.classList.remove("opacity-[0.5]", "scale-80", "pointer-events-none");
-                    }, index * 100)
+                        provider.style.display = "";
+                    }, index * 100);
                 } else {
-                    provider.classList.add("opacity-[0.5]", "scale-80", "pointer-events-none");
+                    provider.style.display = "none";
                 }
             });
         });
